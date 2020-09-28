@@ -5,6 +5,12 @@
   background: url(../../../images/logo.png) center / cover no-repeat;
 }
 
+@media screen and (max-width: 936px) {
+  .header__logo {
+    margin-left: 27px;
+  }
+}
+
 @media screen and (max-width: 767px) {
   .header__logo {
     width: 104px;
