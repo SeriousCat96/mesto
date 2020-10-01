@@ -1,0 +1,24 @@
+.popup__close-button {
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  border: none;
+  outline: none;
+  background: url(../../../images/close-icon.png) center / cover no-repeat;
+  cursor: pointer;
+  position: absolute;
+  right: -40px;
+  top: -40px;
+}
+
+.popup__close-button:active, .popup__close-button:focus {
+  outline: none;
+}
+
+@media screen and (max-width: 500px) {
+  .popup__close-button {
+    width: 26px;
+    height: 26px;
+    right: 0;
+  }
+}
