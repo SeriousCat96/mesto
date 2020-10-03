@@ -1,15 +1,15 @@
 .popup__close-button {
   padding: 0;
-  width: 40px;
-  height: 40px;
+  width: 58px;
+  height: 58px;
   border: none;
   outline: none;
   background: url(../../../images/close-icon.svg) center / cover no-repeat;
   cursor: pointer;
   transition: opacity .5s ease-in-out;
   position: absolute;
-  right: -40px;
-  top: -40px;
+  right: -47px;
+  top: -47px;
 }
 
 .popup__close-button:active, .popup__close-button:focus {
@@ -24,8 +24,8 @@
 
 @media screen and (max-width: 500px) {
   .popup__close-button {
-    width: 26px;
-    height: 26px;
+    width: 37px;
+    height: 37px;
     right: 0;
   }
 }
