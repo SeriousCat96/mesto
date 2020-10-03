@@ -34,6 +34,8 @@ function onEditProfileFormSubmit(evt) {
   if (inputSubtitle.value !== '') {
     profileSubtitle.textContent = inputSubtitle.value;
   }
+
+  closePopup();
 }
 
 function openPopup() {
