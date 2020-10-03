@@ -1,9 +1,8 @@
-@import url(./_visible/popup_visible.css);
 @import url(./__window/popup__window.css);
 @import url(./__close-button/popup__close-button.css);
 
 .popup {
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   background: rgba(0,0,0, .5);

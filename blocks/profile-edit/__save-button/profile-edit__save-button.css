@@ -14,10 +14,17 @@
   border: none;
   cursor: pointer;
   margin-top: 48px;
+  transition: opacity .5s ease-in-out;
 }
 
 .profile-edit__save-button:active, .profile-edit__save-button:focus {
   outline: none;
+}
+
+@media screen and (min-width: 1024px) {
+  .profile-edit__save-button:hover {
+    opacity: .8;
+  }
 }
 
 @media screen and (max-width: 500px) {
