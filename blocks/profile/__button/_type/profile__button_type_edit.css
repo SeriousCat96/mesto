@@ -2,7 +2,7 @@
   width: 24px;
   height: 24px;
   align-self: center;
-  background: url(../../../../images/edit.png) center / 10px 10px no-repeat;
+  background: url(../../../../images/edit-icon.svg) center / 10px 10px no-repeat;
 }
 
 @media screen and (max-width: 767px) {

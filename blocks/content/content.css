@@ -5,3 +5,9 @@
   box-sizing: border-box;
   flex: 1;
 }
+
+@media screen and (max-width: 767px) {
+  .content {
+    padding: 0 19px;
+  }
+}
