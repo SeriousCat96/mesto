@@ -1,4 +1,4 @@
-.photo-grid__cards {
+.photo-grid__card-list {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -9,14 +9,14 @@
 }
 
 @media screen and (max-width: 1023px) {
-  .photo-grid__cards {
+  .photo-grid__card-list {
     grid-template-columns: repeat(2, minmax(min-content, max-content));
     grid-template-rows: repeat(3, minmax(min-content, max-content));
   }
 }
 
 @media screen and (max-width: 767px) {
-  .photo-grid__cards {
+  .photo-grid__card-list {
     grid-template-columns: repeat(1, minmax(min-content, max-content));
     grid-template-rows: repeat(6, minmax(min-content, max-content));
   }

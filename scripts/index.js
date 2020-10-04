@@ -7,22 +7,19 @@ const editProfileForm = popup.querySelector('.profile-edit');
 const inputTitle      = popup.querySelector('.profile-edit__input-text#profile-title');
 const inputSubtitle   = popup.querySelector('.profile-edit__input-text#profile-subtitle');
 
-if (editBtn !== null) {
-  editBtn.addEventListener('click', onEditButtonClick);
-}
-if (popupCloseBtn !== null) {
-  popupCloseBtn.addEventListener('click', onPopupCloseButtonClick);
-}
-if (editProfileForm !== null) {
-  editProfileForm.addEventListener('submit', onEditProfileFormSubmit);
+editBtn.addEventListener('click', openPopup);
+popupCloseBtn.addEventListener('click', closePopup);
+editProfileForm.addEventListener('submit', onEditProfileFormSubmit);
+
+function openPopup() {
+  popup.classList.add('popup_visible');
+
+  inputTitle.value    = profileTitle.textContent;
+  inputSubtitle.value = profileSubtitle.textContent;
 }
 
-function onEditButtonClick() {
-  openPopup();
-}
-
-function onPopupCloseButtonClick() {
-  closePopup();
+function closePopup() {
+  popup.classList.remove('popup_visible');
 }
 
 function onEditProfileFormSubmit(evt) {
@@ -36,23 +33,4 @@ function onEditProfileFormSubmit(evt) {
   }
 
   closePopup();
-}
-
-function openPopup() {
-  if (popup !== null) {
-    popup.classList.add('popup_visible');
-
-    if (inputTitle !== null && profileTitle !== null) {
-      inputTitle.value = profileTitle.textContent;
-    }
-    if (inputSubtitle !== null && profileSubtitle !== null) {
-      inputSubtitle.value = profileSubtitle.textContent;
-    }
-  }
-}
-
-function closePopup() {
-  if (popup !== null) {
-    popup.classList.remove('popup_visible');
-  }
 }

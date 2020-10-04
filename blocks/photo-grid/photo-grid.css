@@ -1,4 +1,4 @@
-@import url(./__cards/photo-grid__cards.css);
+@import url(./__card-list/photo-grid__card-list.css);
 
 .photo-grid {
   display: flex;
