@@ -10,7 +10,7 @@
   flex-wrap: wrap;
   background-color: white;
   color: black;
-  border-radius: 3.55%;
+  border-radius: 10px;
 }
 
 @media screen and (max-width: 1023px) {
