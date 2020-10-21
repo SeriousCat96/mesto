@@ -1,13 +1,11 @@
 .content {
-  max-width: 936px;
+  max-width: 882px;
   width: 100%;
-  padding: 0 27px;
-  box-sizing: border-box;
   flex: 1;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 936px) {
   .content {
-    padding: 0 19px;
+    max-width: 100%;
   }
 }
