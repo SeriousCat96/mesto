@@ -1,8 +1,0 @@
-@import url(./__title/profile-edit__title.css);
-@import url(./__input-text/profile-edit__input-text.css);
-@import url(./__save-button/profile-edit__save-button.css);
-
-.profile-edit {
-  display: flex;
-  flex-direction: column;
-}
