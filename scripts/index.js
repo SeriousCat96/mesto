@@ -45,7 +45,7 @@ const initialCards         = [
   }
 ];
 
-initialCards.forEach(card => addCardElement(card));
+initialCards.forEach(cardData => addCardElement(cardData));
 
 editProfileBtn.addEventListener('click', onEditProfileButtonClick);
 editProfileCloseBtn.addEventListener('click', onEditProfileCloseButtonClick);
@@ -61,23 +61,22 @@ function openPopup(popupElement) {
 
 function closePopup(popupElement) {
   popupElement.classList.remove('popup_active');
-  popupElement.querySelectorAll('.edit-form__input').forEach(input => {
-    input.value = '';
-  });
+  popupElement.querySelectorAll('.edit-form__input').forEach(input => input.value = '');
 }
 
-function addCardElement(card) {
-  let newCardElement = cardTemplate.cloneNode(true);
+function addCardElement(cardData) {
+  if(cardData.name !== '' && cardData.url !== '') {
+    let newCardElement = cardTemplate.cloneNode(true);
+    newCardElement.querySelector('.card__caption').textContent = cardData.name;
+    newCardElement.querySelector('.card__image').src           = cardData.url;
+    newCardElement.querySelector('.card__like-button').addEventListener('click',
+      evt => evt.target.classList.toggle('card__like-button_checked'));
 
-  if(card.name !== '' && card.url !== '') {
-      newCardElement.querySelector('.card__caption').textContent = card.name;
-      newCardElement.querySelector('.card__image').src           = card.url;
-
-      cardsContainer.append(newCardElement);
+    cardsContainer.append(newCardElement);
   }
 }
 
-function removeCardElement(card) {
+function removeCardElement(cardData) {
 
 }
 
@@ -119,7 +118,6 @@ function onAddCardFormSubmit(evt) {
   addCardElement({
     "name" : cardInputName.value,
     "url"  : cardInputUrl.value
-    });
-
+  });
   closePopup(addCardPopup);
 }
