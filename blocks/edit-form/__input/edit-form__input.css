@@ -1,4 +1,4 @@
-.profile-edit__input-text {
+.edit-form__input {
   padding: 13px 0;
   width: 100%;
   font-style: normal;
@@ -11,11 +11,11 @@
   margin-bottom: 30px;
 }
 
-.profile-edit__input-text:last-of-type {
+.edit-form__input:last-of-type {
   margin-bottom: 0;
 }
 
-.profile-edit__input-text:active, .profile-edit__input-text:focus {
+.edit-form__input:active, .edit-form__input:focus {
   padding: 13px 4px;
   border: none;
   outline-color: dodgerblue;

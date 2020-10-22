@@ -1,4 +1,4 @@
-.profile-edit__save-button {
+.edit-form__save-button {
   padding: 0;
   width: 100%;
   height: 50px;
@@ -17,18 +17,18 @@
   transition: opacity .5s ease-in-out;
 }
 
-.profile-edit__save-button:active, .profile-edit__save-button:focus {
+.edit-form__save-button:active, .edit-form__save-button:focus {
   outline: none;
 }
 
 @media screen and (min-width: 1024px) {
-  .profile-edit__save-button:hover {
+  .edit-form__save-button:hover {
     opacity: .8;
   }
 }
 
 @media screen and (max-width: 500px) {
-  .profile-edit__save-button {
+  .edit-form__save-button {
     font-size: 14px;
     line-height: 1.21;
   }
