@@ -1,3 +1,5 @@
+/* @import url(./_checked/card__like-button_checked.css); */
+
 .card__like-button {
   padding: 0;
   margin: 0 21px 21px auto;
@@ -6,12 +8,13 @@
   border: none;
   outline: none;
   background: url(../../../images/like.svg) center / cover no-repeat;
-  transition: transform .5s;
+  transition: opacity .5s;
 }
 
 @media screen and (min-width: 1024px) {
   .card__like-button:hover {
-    transform: scale(1.2);
+    opacity: .6;
+    cursor: pointer;
   }
 }
 
