@@ -69,8 +69,10 @@ function addCardElement(cardData) {
     let newCardElement = cardTemplate.cloneNode(true);
     newCardElement.querySelector('.card__caption').textContent = cardData.name;
     newCardElement.querySelector('.card__image').src           = cardData.url;
-    newCardElement.querySelector('.card__like-button').addEventListener('click',
-      evt => evt.target.classList.toggle('card__like-button_checked'));
+    newCardElement.querySelector('.card__like-button').addEventListener('click', evt => {
+        evt.target.classList.toggle('card__like-button_checked');
+        evt.target.classList.toggle('scaling');
+      });
 
     cardsContainer.append(newCardElement);
   }
