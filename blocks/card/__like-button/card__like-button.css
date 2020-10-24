@@ -6,7 +6,6 @@
   width: 21px;
   height: 19px;
   border: none;
-  outline: none;
   background: url(../../../images/like.svg) center / cover no-repeat;
   transition: opacity .5s;
 }

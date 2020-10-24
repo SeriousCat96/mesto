@@ -4,23 +4,9 @@
   list-style: none;
   display: grid;
   justify-content: center;
-  grid-template-columns: repeat(3, minmax(min-content, max-content));
-  grid-template-rows: repeat(2, minmax(min-content, max-content));
+  grid-template-columns: repeat(auto-fit, 282px);
+  grid-auto-flow: dense;
   gap: 21px 18px;
   width: 100%;
   box-sizing: border-box;
-}
-
-@media screen and (max-width: 1023px) {
-  .photo-grid__card-list {
-    grid-template-columns: repeat(2, minmax(min-content, max-content));
-    grid-template-rows: repeat(3, minmax(min-content, max-content));
-  }
-}
-
-@media screen and (max-width: 767px) {
-  .photo-grid__card-list {
-    grid-template-columns: repeat(1, minmax(min-content, max-content));
-    grid-template-rows: repeat(6, minmax(min-content, max-content));
-  }
 }
