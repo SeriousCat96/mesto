@@ -31,5 +31,6 @@
   .edit-form__save-button {
     font-size: 14px;
     line-height: 1.21;
+    margin-top: 36px;
   }
 }

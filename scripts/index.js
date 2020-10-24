@@ -71,7 +71,7 @@ function addCardElement(cardContext) {
     newCardElement.querySelector('.card__caption').textContent = cardContext.name;
     newCardElement.querySelector('.card__image').src           = cardContext.url;
     newCardElement.querySelector('.card__remove-button').addEventListener('click', e =>
-      removeCardElement(e.target.closest('li')));
+      e.target.closest('li').remove())
     newCardElement.querySelector('.card__like-button').addEventListener('click', e => {
       e.target.classList.toggle('card__like-button_checked');
       e.target.classList.toggle('scaling');
@@ -79,10 +79,6 @@ function addCardElement(cardContext) {
 
     cardsContainer.append(newCardElement);
   }
-}
-
-function removeCardElement(cardElement) {
-  cardElement.remove();
 }
 
 function onEditProfileButtonClick() {

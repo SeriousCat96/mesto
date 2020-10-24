@@ -1,5 +1,5 @@
 @import url(./_active/popup_active.css);
-@import url(./__window/popup__window.css);
+@import url(./__view/popup__view.css);
 @import url(./__close-button/popup__close-button.css);
 
 .popup {

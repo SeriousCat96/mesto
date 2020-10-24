@@ -17,6 +17,14 @@
 
 .edit-form__input:active, .edit-form__input:focus {
   padding: 13px 4px;
-  border: none;
+  border-color: none;
   outline-color: dodgerblue;
+}
+
+@media screen and (max-width: 500px) {
+  .edit-form__input {
+    font-size: 12px;
+    padding: 12px 3px;
+    margin-bottom: 20px;
+  }
 }
