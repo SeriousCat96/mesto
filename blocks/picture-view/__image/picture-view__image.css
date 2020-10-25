@@ -1,6 +1,7 @@
 .picture-view__image {
   padding: 0;
   margin: 0;
+  -o-object-fit: cover;
   object-fit: cover;
   max-width: 75vw;
   max-height: 75vh;

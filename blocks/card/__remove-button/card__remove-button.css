@@ -2,6 +2,8 @@
   width: 18px;
   height: 20px;
   background: url(../../../images/delete-icon.svg) center / cover no-repeat;
+  -webkit-transition: opacity .5s;
+  -o-transition: opacity .5s;
   transition: opacity .5s;
   border: none;
   position: absolute;
@@ -9,13 +11,13 @@
   right: 15px;
 }
 
+.card__remove-button:active, .card__remove-button:focus {
+  outline: none;
+}
+
 @media screen and (min-width: 1024px) {
   .card__remove-button:hover {
     cursor: pointer;
     opacity: .6;
   }
-}
-
-.card__remove-button:active, .card__remove-button:focus {
-  outline: none;
 }

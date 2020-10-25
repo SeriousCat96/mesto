@@ -6,6 +6,8 @@
   outline: none;
   background: url(../../../images/close-icon.svg) center / cover no-repeat;
   cursor: pointer;
+  -webkit-transition: opacity .5s ease-in-out;
+  -o-transition: opacity .5s ease-in-out;
   transition: opacity .5s ease-in-out;
   position: absolute;
   right: -47px;

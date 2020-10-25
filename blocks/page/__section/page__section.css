@@ -3,6 +3,7 @@
 
 .page__section {
   max-width: 882px;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   color: white;
   font-family: 'Inter', 'Verdana', sans-serif;

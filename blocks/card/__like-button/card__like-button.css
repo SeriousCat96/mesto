@@ -1,4 +1,4 @@
-/* @import url(./_checked/card__like-button_checked.css); */
+@import url(./_checked/card__like-button_checked.css);
 
 .card__like-button {
   padding: 0;
@@ -7,7 +7,13 @@
   height: 19px;
   border: none;
   background: url(../../../images/like.svg) center / cover no-repeat;
+  -webkit-transition: opacity .5s;
+  -o-transition: opacity .5s;
   transition: opacity .5s;
+}
+
+.card__like-button:active, .card__like-button:focus {
+  outline: none;
 }
 
 @media screen and (min-width: 1024px) {
@@ -17,6 +23,3 @@
   }
 }
 
-.card__like-button:active, .card__like-button:focus {
-  outline: none;
-}
