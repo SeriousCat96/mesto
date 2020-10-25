@@ -15,9 +15,9 @@
   background: rgba(0, 0, 0, .5);
   visibility: hidden;
   opacity: 0;
-  -webkit-transition: visibility .25s, opacity .25s;
-  -o-transition: visibility .25s, opacity .25s;
-  transition: visibility .25s, opacity .25s;
+  -webkit-transition: visibility .3s, opacity .3s;
+  -o-transition: visibility .3s, opacity .3s;
+  transition: visibility .3s, opacity .3s;
   position: fixed;
   top: 0;
   left: 0;

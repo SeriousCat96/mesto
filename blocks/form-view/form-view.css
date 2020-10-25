@@ -1,6 +1,6 @@
 @import url(./__title/form-view__title.css);
 @import url(./__input/form-view__input.css);
-@import url(./__save-button/form-view__save-button.css);
+@import url(./__submit-button/form-view__submit-button.css);
 
 .form-view {
   display: -webkit-box;
