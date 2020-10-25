@@ -31,25 +31,34 @@
       </section>
     </main>
     <section class="popup" id="edit-profile">
-      <div class="popup__view">
+      <div class="popup__view popup__view_type_form">
         <button class="popup__close-button" type="button"></button>
-        <form class="edit-form" name="edit-profile" method="POST">
-          <h2 class="edit-form__title">Редактировать профиль</h2>
-          <input class="edit-form__input" id="profile-title" name="title" type="text" placeholder="Заголовок профиля">
-          <input class="edit-form__input" id="profile-subtitle" name="subtitle" type="text" placeholder="Подзаголовок профиля">
-          <button class="edit-form__save-button" type="submit">Сохранить</button>
+        <form class="form-view" name="edit-profile" method="POST">
+          <h2 class="form-view__title">Редактировать профиль</h2>
+          <input class="form-view__input" id="profile-title" name="title" type="text" maxlength="30" placeholder="Заголовок профиля">
+          <input class="form-view__input" id="profile-subtitle" name="subtitle" type="text" maxlength="40" placeholder="Подзаголовок профиля">
+          <button class="form-view__save-button" type="submit">Сохранить</button>
         </form>
       </div>
     </section>
     <section class="popup" id="add-card">
-      <div class="popup__view">
+      <div class="popup__view popup__view_type_form">
         <button class="popup__close-button" type="button"></button>
-        <form class="edit-form" name="add-card" method="POST">
-          <h2 class="edit-form__title">Новое место</h2>
-          <input class="edit-form__input" id="card-name" name="name" type="text" placeholder="Название">
-          <input class="edit-form__input" id="card-url" name="url" type="url" placeholder="Ссылка на картинку">
-          <button class="edit-form__save-button" type="submit">Создать</button>
+        <form class="form-view" name="add-card" method="POST">
+          <h2 class="form-view__title">Новое место</h2>
+          <input class="form-view__input" id="card-name" name="name" type="text" maxlength="30" placeholder="Название">
+          <input class="form-view__input" id="card-url" name="url" type="url" placeholder="Ссылка на картинку">
+          <button class="form-view__save-button" type="submit">Создать</button>
         </form>
+      </div>
+    </section>
+    <section class="popup" id="card-preview">
+      <div class="popup__view popup__view_type_image">
+        <button class="popup__close-button" type="button"></button>
+        <figure class="picture-view">
+          <img class="picture-view__image" alt="Изображение карточки">
+          <figcaption class="picture-view__caption"></figcaption>
+        </figure>
       </div>
     </section>
     <footer class="footer page__section page__section_indent-size_s">

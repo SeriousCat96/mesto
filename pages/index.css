@@ -8,5 +8,6 @@
 @import url(../blocks/scaling/scaling.css);
 @import url(../blocks/card/card.css);
 @import url(../blocks/popup/popup.css);
-@import url(../blocks/edit-form/edit-form.css);
+@import url(../blocks/form-view/form-view.css);
+@import url(../blocks/picture-view/picture-view.css);
 @import url(../blocks/footer/footer.css);
