@@ -1,0 +1,9 @@
+@import url(./__image/picture-view__image.css);
+@import url(./__caption/picture-view__caption.css);
+
+.picture-view {
+  padding: 0;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}

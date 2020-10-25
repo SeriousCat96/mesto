@@ -1,21 +1,9 @@
+@import url(./_type/popup__view_type_form.css);
+@import url(./_type/popup__view_type_image.css);
+
 .popup__view {
-  color: black;
-  background: #FFFFFF;
   font-family: 'Inter', 'Verdana', sans-serif;
-  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
   box-sizing: border-box;
-  border-radius: 10px;
-  padding: 36px;
-  width: 100%;
-  max-width: 430px;
   z-index: 1;
   position: relative;
-}
-
-@media screen and (max-width: 500px) {
-  .popup__view {
-    max-width: 75vw;
-    max-height: 75vh;
-    padding: 30px 20px;
-  }
 }

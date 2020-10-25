@@ -1,4 +1,4 @@
-.edit-form__input {
+.form-view__input {
   padding: 13px 0;
   width: 100%;
   font-style: normal;
@@ -11,18 +11,18 @@
   margin-bottom: 30px;
 }
 
-.edit-form__input:last-of-type {
+.form-view__input:last-of-type {
   margin-bottom: 0;
 }
 
-.edit-form__input:active, .edit-form__input:focus {
+.form-view__input:active, .form-view__input:focus {
   padding: 13px 4px;
   border-color: none;
   outline-color: dodgerblue;
 }
 
 @media screen and (max-width: 500px) {
-  .edit-form__input {
+  .form-view__input {
     font-size: 12px;
     padding: 12px 3px;
     margin-bottom: 20px;
