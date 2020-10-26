@@ -1,36 +1,130 @@
-const editBtn         = document.querySelector('.profile__button.profile__button_type_edit');
-const profileTitle    = document.querySelector('.profile__title');
-const profileSubtitle = document.querySelector('.profile__subtitle');
-const popup           = document.querySelector('.popup');
-const popupCloseBtn   = popup.querySelector('.popup__close-button');
-const editProfileForm = popup.querySelector('.profile-edit');
-const inputTitle      = popup.querySelector('.profile-edit__input-text#profile-title');
-const inputSubtitle   = popup.querySelector('.profile-edit__input-text#profile-subtitle');
+const editProfileBtn       = document.querySelector('.profile__button.profile__button_type_edit');
+const profileTitle         = document.querySelector('.profile__title');
+const profileSubtitle      = document.querySelector('.profile__subtitle');
 
-editBtn.addEventListener('click', openPopup);
-popupCloseBtn.addEventListener('click', closePopup);
-editProfileForm.addEventListener('submit', onEditProfileFormSubmit);
+const editProfilePopup     = document.querySelector('.popup#edit-profile');
+const editProfileCloseBtn  = editProfilePopup.querySelector('.popup__close-button');
+const editProfileForm      = editProfilePopup.querySelector('.form-view');
+const profileInputTitle    = editProfilePopup.querySelector('.form-view__input#profile-title');
+const profileInputSubtitle = editProfilePopup.querySelector('.form-view__input#profile-subtitle');
 
-function openPopup() {
-  popup.classList.add('popup_visible');
+const addCardBtn           = document.querySelector('.profile__button.profile__button_type_add');
 
-  inputTitle.value    = profileTitle.textContent;
-  inputSubtitle.value = profileSubtitle.textContent;
+const addCardPopup         = document.querySelector('.popup#add-card');
+const addCardCloseBtn      = addCardPopup.querySelector('.popup__close-button');
+const addCardForm          = addCardPopup.querySelector('.form-view');
+const cardInputName        = addCardPopup.querySelector('.form-view__input#card-name');
+const cardInputUrl         = addCardPopup.querySelector('.form-view__input#card-url');
+
+const cardPreviewPopup     = document.querySelector('.popup#card-preview');
+const cardPreviewCloseBtn  = cardPreviewPopup.querySelector('.popup__close-button');
+const cardPreviewImage     = cardPreviewPopup.querySelector('.picture-view__image');
+const cardPreviewCaption   = cardPreviewPopup.querySelector('.picture-view__caption');
+
+const cardTemplate         = document.querySelector('#card-template').content;
+const cardsContainer       = document.querySelector('.cards-grid__items');
+
+function setDefaults() {
+  const defaultCardList  = [
+    {
+        name: 'Архыз',
+        url: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+    {
+        name: 'Челябинская область',
+        url: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+        name: 'Иваново',
+        url: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+        name: 'Камчатка',
+        url: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+        name: 'Холмогорский район',
+        url: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+        name: 'Байкал',
+        url: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    }
+  ];
+
+  defaultCardList.forEach(cardData => addCardElement(cardData));
+
+  profileInputTitle.value    = profileTitle.textContent;
+  profileInputSubtitle.value = profileSubtitle.textContent;
 }
 
-function closePopup() {
-  popup.classList.remove('popup_visible');
+function openPopup(popupElement) {
+  popupElement.classList.add('popup_active');
+}
+
+function closePopup(popupElement, clearInputs = false) {
+  popupElement.classList.remove('popup_active');
+  if(clearInputs) {
+    popupElement.querySelectorAll('.form-view__input').forEach(input => input.value = '');
+  }
+}
+
+function addCardElement(cardData) {
+  if(cardData.name !== '' && cardData.url !== '') {
+    const newCardElement   = cardTemplate.cloneNode(true);
+    const cardImageElement = newCardElement.querySelector('.card__image');
+
+    cardImageElement.src = cardData.url;
+    cardImageElement.addEventListener('click', e => {
+      openPopup(cardPreviewPopup);
+
+      cardPreviewImage.src           = e.target.src;
+      cardPreviewCaption.textContent = e.target.closest('.card').querySelector('.card__caption').textContent;
+      cardPreviewCloseBtn.addEventListener('click', () => closePopup(cardPreviewPopup));
+    });
+    newCardElement.querySelector('.card__caption').textContent = cardData.name;
+    newCardElement.querySelector('.card__remove-button').addEventListener('click', e =>
+      e.target.closest('li').remove())
+    newCardElement.querySelector('.card__like-button').addEventListener('click', e => {
+      e.target.addEventListener('animationend', e => e.target.classList.remove('scaling'));
+      e.target.classList.toggle('card__like-button_checked');
+      e.target.classList.add('scaling');
+    });
+
+    cardsContainer.append(newCardElement);
+  }
 }
 
 function onEditProfileFormSubmit(evt) {
   evt.preventDefault();
 
-  if (inputTitle.value !== '') {
-    profileTitle.textContent = inputTitle.value;
+  if(profileInputTitle.value !== '') {
+    profileTitle.textContent = profileInputTitle.value;
   }
-  if (inputSubtitle.value !== '') {
-    profileSubtitle.textContent = inputSubtitle.value;
+  if(profileInputSubtitle.value !== '') {
+    profileSubtitle.textContent = profileInputSubtitle.value;
   }
 
-  closePopup();
+  closePopup(editProfilePopup);
 }
+
+function onAddCardFormSubmit(evt) {
+  evt.preventDefault();
+
+  addCardElement({
+    "name" : cardInputName.value,
+    "url"  : cardInputUrl.value
+  });
+
+  closePopup(addCardPopup, true);
+}
+
+editProfileBtn.addEventListener('click', () => openPopup(editProfilePopup));
+editProfileCloseBtn.addEventListener('click', () => closePopup(editProfilePopup));
+editProfileForm.addEventListener('submit', onEditProfileFormSubmit);
+
+addCardBtn.addEventListener('click', () => openPopup(addCardPopup));
+addCardCloseBtn.addEventListener('click', () => closePopup(addCardPopup, true));
+addCardForm.addEventListener('submit', onAddCardFormSubmit);
+
+setDefaults();

@@ -1,11 +1,23 @@
-@import url(./__window/popup__window.css);
+@import url(./_active/popup_active.css);
+@import url(./__view/popup__view.css);
 @import url(./__close-button/popup__close-button.css);
 
 .popup {
-  display: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
-  background: rgba(0,0,0, .5);
+  background: rgba(0, 0, 0, .5);
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: visibility .3s, opacity .3s;
+  -o-transition: visibility .3s, opacity .3s;
+  transition: visibility .3s, opacity .3s;
   position: fixed;
   top: 0;
   left: 0;

@@ -1,0 +1,13 @@
+.input {
+  font-style: normal;
+  font-weight: normal;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+}
+
+.input:active, .input:focus {
+  border-color: none;
+  outline-color: dodgerblue;
+}

@@ -1,0 +1,23 @@
+.form-view__input {
+  padding: 13px 0;
+  font-size: 14px;
+  line-height: 1.21;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.form-view__input:last-of-type {
+  margin-bottom: 0;
+}
+
+.form-view__input:active, .form-view__input:focus {
+  padding: 13px 4px;
+}
+
+@media screen and (max-width: 500px) {
+  .form-view__input {
+    font-size: 12px;
+    padding: 12px 0;
+    margin-bottom: 20px;
+  }
+}
