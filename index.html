@@ -19,47 +19,44 @@
       <section class="profile page__section page__section_indent-size_m">
         <img class="profile__avatar" src="./images/avatar.jpg" alt="Аватар">
         <div class="profile__info">
-          <h1 class="profile__title">Жак-Ив Кусто</h1>
-          <p class="profile__subtitle">Исследователь океана</p>
+          <h1 class="profile__title text-ellipsis">Жак-Ив Кусто</h1>
+          <p class="profile__subtitle text-ellipsis">Исследователь океана</p>
           <button class="button profile__button profile__button_type_edit" type="button"></button>
         </div>
         <button class="button profile__button profile__button_type_add" type="button"></button>
       </section>
-      <section class="photo-grid page__section page__section_indent-size_m">
-        <ul class="photo-grid__card-list">
-        </ul>
+      <section class="cards-grid page__section page__section_indent-size_m">
+        <ul class="list cards-grid__items"></ul>
       </section>
     </main>
     <section class="popup" id="edit-profile">
-      <div class="popup__view popup__view_type_form">
+      <div class="form-view popup__view">
         <button class="button popup__close-button" type="button"></button>
-        <form class="form-view" name="edit-profile" method="POST">
+        <form class="form-view__form" name="profile" method="POST">
           <h2 class="form-view__title">Редактировать профиль</h2>
-          <input class="form-view__input" id="profile-title" name="title" type="text" maxlength="30" placeholder="Заголовок профиля">
-          <input class="form-view__input" id="profile-subtitle" name="subtitle" type="text" maxlength="40" placeholder="Подзаголовок профиля">
+          <input class="input form-view__input" id="profile-title" name="title" type="text" maxlength="30" placeholder="Заголовок профиля">
+          <input class="input form-view__input" id="profile-subtitle" name="subtitle" type="text" maxlength="40" placeholder="Подзаголовок профиля">
           <button class="button form-view__submit-button" type="submit">Сохранить</button>
         </form>
       </div>
     </section>
     <section class="popup" id="add-card">
-      <div class="popup__view popup__view_type_form">
+      <div class="form-view popup__view">
         <button class="button popup__close-button" type="button"></button>
-        <form class="form-view" name="add-card" method="POST">
+        <form class="form-view__form" name="card" method="POST">
           <h2 class="form-view__title">Новое место</h2>
-          <input class="form-view__input" id="card-name" name="name" type="text" maxlength="30" placeholder="Название">
-          <input class="form-view__input" id="card-url" name="url" type="url" placeholder="Ссылка на картинку">
+          <input class="input form-view__input" id="card-name" name="name" type="text" maxlength="30" placeholder="Название">
+          <input class="input form-view__input" id="card-url" name="url" type="url" placeholder="Ссылка на картинку">
           <button class="button form-view__submit-button" type="submit">Создать</button>
         </form>
       </div>
     </section>
     <section class="popup" id="card-preview">
-      <div class="popup__view popup__view_type_image">
+      <figure class="picture-view popup__view">
         <button class="button popup__close-button" type="button"></button>
-        <figure class="picture-view">
-          <img class="picture-view__image" alt="Изображение карточки">
-          <figcaption class="picture-view__caption"></figcaption>
-        </figure>
-      </div>
+        <img class="picture-view__image" alt="Изображение карточки">
+        <figcaption class="picture-view__caption text-ellipsis"></figcaption>
+      </figure>
     </section>
     <footer class="footer page__section page__section_indent-size_s">
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
@@ -70,7 +67,7 @@
       <article class="card">
         <button class="button card__remove-button" type="button"></button>
         <img class="card__image" alt="Изображение карточки">
-        <h2 class="card__caption"></h2>
+        <h2 class="card__caption text-ellipsis"></h2>
         <button class="button card__like-button" type="button"></button>
       </article>
     </li>

@@ -1,14 +1,8 @@
 .form-view__input {
   padding: 13px 0;
-  width: 100%;
-  font-style: normal;
-  font-weight: normal;
   font-size: 14px;
   line-height: 1.21;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  border: none;
-  border-bottom: 1px solid rgba(0, 0, 0, .2);
+  width: 100%;
   margin-bottom: 30px;
 }
 
@@ -18,14 +12,12 @@
 
 .form-view__input:active, .form-view__input:focus {
   padding: 13px 4px;
-  border-color: none;
-  outline-color: dodgerblue;
 }
 
 @media screen and (max-width: 500px) {
   .form-view__input {
     font-size: 12px;
-    padding: 12px 3px;
+    padding: 12px 0;
     margin-bottom: 20px;
   }
 }

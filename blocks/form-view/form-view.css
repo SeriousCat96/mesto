@@ -1,13 +1,22 @@
+@import url(./__form/form-view__form.css);
 @import url(./__title/form-view__title.css);
 @import url(./__input/form-view__input.css);
 @import url(./__submit-button/form-view__submit-button.css);
 
 .form-view {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
+  color: black;
+  background: white;
+  width: 100%;
+  max-width: 430px;
+  padding: 36px;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+}
+
+@media screen and (max-width: 500px) {
+  .form-view {
+    max-width: 75vw;
+    padding: 30px 20px;
+  }
 }

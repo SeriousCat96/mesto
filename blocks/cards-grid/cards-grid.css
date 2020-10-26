@@ -1,6 +1,6 @@
-@import url(./__card-list/photo-grid__card-list.css);
+@import url(./__items/cards-grid__items.css);
 
-.photo-grid {
+.cards-grid {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
