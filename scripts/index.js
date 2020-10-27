@@ -60,8 +60,12 @@ function resetCardItems() {
   defaultCardList.forEach(cardData => addCardItem(createCardItem(cardData)));
 }
 
-function togglePopup(popup) {
-  popup.classList.toggle('popup_active');
+function openPopup(popup) {
+  popup.classList.add('popup_active');
+}
+
+function closePopup(popup) {
+  popup.classList.remove('popup_active');
 }
 
 function createFromTemplate(template) {
@@ -81,11 +85,11 @@ function createCardItem(cardData) {
     cardImage.src = cardData.url;
 
     cardImage.addEventListener('click', e => {
-      togglePopup(cardPreviewPopup);
+      openPopup(cardPreviewPopup);
 
       cardPreviewImage.src = e.target.src;
       cardPreviewCaption.textContent = e.target.closest('.card').querySelector('.card__caption').textContent;
-      cardPreviewCloseBtn.addEventListener('click', () => togglePopup(cardPreviewPopup));
+      cardPreviewCloseBtn.addEventListener('click', () => closePopup(cardPreviewPopup));
     });
     cardRemoveBtn.addEventListener('click', e => e.target.closest('li').remove());
     cardLikeBtn.addEventListener('click', e => {
@@ -116,7 +120,7 @@ function onEditProfileFormSubmit(evt) {
     profileSubtitle.textContent = profileInputSubtitle.value;
   }
 
-  togglePopup(editProfilePopup);
+  closePopup(editProfilePopup);
 }
 
 function onEditProfileFormReset(evt) {
@@ -135,21 +139,21 @@ function onAddCardFormSubmit(evt) {
   }));
 
   addCardForm.reset();
-  togglePopup(addCardPopup);
+  closePopup(addCardPopup);
 }
 
 function onAddCardCloseButtonClick() {
   addCardForm.reset();
-  togglePopup(addCardPopup);
+  closePopup(addCardPopup);
 }
 
 editProfileForm.addEventListener('submit', onEditProfileFormSubmit);
 editProfileForm.addEventListener('reset', onEditProfileFormReset);
-editProfileCloseBtn.addEventListener('click', () => togglePopup(editProfilePopup));
-editProfileBtn.addEventListener('click', () => togglePopup(editProfilePopup));
+editProfileCloseBtn.addEventListener('click', () => closePopup(editProfilePopup));
+editProfileBtn.addEventListener('click', () => openPopup(editProfilePopup));
 
 addCardForm.addEventListener('submit', onAddCardFormSubmit);
 addCardCloseBtn.addEventListener('click', onAddCardCloseButtonClick);
-addCardBtn.addEventListener('click', () => togglePopup(addCardPopup));
+addCardBtn.addEventListener('click', () => openPopup(addCardPopup));
 
 setDefaults();
