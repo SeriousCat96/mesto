@@ -45,7 +45,7 @@
         <button class="button popup__close-button" type="button"></button>
         <form class="form-view__form" name="card" method="POST">
           <h2 class="form-view__title">Новое место</h2>
-          <input class="input form-view__input" id="card-name" name="name" type="text" maxlength="30" placeholder="Название">
+          <input class="input form-view__input" id="card-name" name="name" type="text" placeholder="Название">
           <input class="input form-view__input" id="card-url" name="url" type="url" placeholder="Ссылка на картинку">
           <button class="button form-view__submit-button" type="submit">Создать</button>
         </form>
@@ -53,8 +53,10 @@
     </section>
     <section class="popup" id="card-preview">
       <figure class="picture-view popup__view">
-        <button class="button popup__close-button" type="button"></button>
-        <img class="picture-view__image" alt="Изображение карточки">
+        <div class="picture-view__container">
+          <button class="button popup__close-button" type="button"></button>
+          <img class="picture-view__image" src="#" alt="Изображение карточки">
+        </div>
         <figcaption class="picture-view__caption text-ellipsis"></figcaption>
       </figure>
     </section>
@@ -66,7 +68,7 @@
     <li>
       <article class="card">
         <button class="button card__remove-button" type="button"></button>
-        <img class="card__image" alt="Изображение карточки">
+        <img class="card__image" src="" alt="Изображение карточки">
         <h2 class="card__caption text-ellipsis"></h2>
         <button class="button card__like-button" type="button"></button>
       </article>
