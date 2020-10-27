@@ -89,7 +89,6 @@ function createCardItem(cardData) {
 
       cardPreviewImage.src = e.target.src;
       cardPreviewCaption.textContent = e.target.closest('.card').querySelector('.card__caption').textContent;
-      cardPreviewCloseBtn.addEventListener('click', () => closePopup(cardPreviewPopup));
     });
     cardRemoveBtn.addEventListener('click', e => e.target.closest('li').remove());
     cardLikeBtn.addEventListener('click', e => {
@@ -155,5 +154,7 @@ editProfileBtn.addEventListener('click', () => openPopup(editProfilePopup));
 addCardForm.addEventListener('submit', onAddCardFormSubmit);
 addCardCloseBtn.addEventListener('click', onAddCardCloseButtonClick);
 addCardBtn.addEventListener('click', () => openPopup(addCardPopup));
+
+cardPreviewCloseBtn.addEventListener('click', () => closePopup(cardPreviewPopup));
 
 setDefaults();
