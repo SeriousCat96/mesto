@@ -87,8 +87,11 @@ function createCardItem(cardData) {
     cardImage.addEventListener('click', e => {
       openPopup(cardPreviewPopup);
 
+      const currentCard = e.target.closest('.card');
+      const currentCardCaption = currentCard.querySelector('.card__caption');
+
       cardPreviewImage.src = e.target.src;
-      cardPreviewCaption.textContent = e.target.closest('.card').querySelector('.card__caption').textContent;
+      cardPreviewCaption.textContent = currentCardCaption.textContent;
     });
     cardRemoveBtn.addEventListener('click', e => e.target.closest('li').remove());
     cardLikeBtn.addEventListener('click', e => {
