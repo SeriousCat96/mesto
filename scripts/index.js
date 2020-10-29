@@ -1,20 +1,20 @@
 const editProfileBtn = document.querySelector('.profile__button.profile__button_type_edit');
-const profileTitle = document.querySelector('.profile__title');
-const profileSubtitle = document.querySelector('.profile__subtitle');
+const profileName = document.querySelector('.profile__title');
+const profileAbout = document.querySelector('.profile__subtitle');
 
 const editProfilePopup = document.querySelector('.popup#edit-profile');
 const editProfileCloseBtn = editProfilePopup.querySelector('.popup__close-button');
-const editProfileForm = editProfilePopup.querySelector('.form-view__form');
-const profileInputTitle = editProfilePopup.querySelector('.form-view__input#profile-title');
-const profileInputSubtitle = editProfilePopup.querySelector('.form-view__input#profile-subtitle');
+const editProfileForm = document.forms.profile;
+const nameInputTitle = editProfileForm.elements.name;
+const aboutInputSubtitle = editProfileForm.elements.about;
 
 const addCardBtn = document.querySelector('.profile__button.profile__button_type_add');
 
 const addCardPopup = document.querySelector('.popup#add-card');
 const addCardCloseBtn = addCardPopup.querySelector('.popup__close-button');
-const addCardForm = addCardPopup.querySelector('.form-view__form');
-const cardInputName = addCardPopup.querySelector('.form-view__input#card-name');
-const cardInputUrl = addCardPopup.querySelector('.form-view__input#card-url');
+const addCardForm = document.forms.card;
+const cardInputName = addCardForm.elements.name;
+const cardInputUrl = addCardForm.elements.url;
 
 const cardPreviewPopup = document.querySelector('.popup#card-preview');
 const cardPreviewCloseBtn = cardPreviewPopup.querySelector('.popup__close-button');
@@ -73,91 +73,84 @@ function createFromTemplate(template) {
 }
 
 function createCardItem(cardData) {
-  if(cardData.name !== '' && cardData.url !== '') {
-    const newCardItem = createFromTemplate(cardTemplate);
+  const newCardItem = createFromTemplate(cardTemplate);
 
-    const cardImage = newCardItem.querySelector('.card__image');
-    const cardCaption = newCardItem.querySelector('.card__caption');
-    const cardRemoveBtn = newCardItem.querySelector('.card__remove-button');
-    const cardLikeBtn = newCardItem.querySelector('.card__like-button');
+  const cardImage = newCardItem.querySelector('.card__image');
+  const cardCaption = newCardItem.querySelector('.card__caption');
+  const cardRemoveBtn = newCardItem.querySelector('.card__remove-button');
+  const cardLikeBtn = newCardItem.querySelector('.card__like-button');
 
-    cardCaption.textContent = cardData.name;
-    cardImage.src = cardData.url;
+  cardCaption.textContent = cardData.name;
+  cardImage.src = cardData.url;
 
-    cardImage.addEventListener('click', e => {
-      openPopup(cardPreviewPopup);
+  cardImage.addEventListener('click', e => {
+    openPopup(cardPreviewPopup);
 
-      const currentCard = e.target.closest('.card');
-      const currentCardCaption = currentCard.querySelector('.card__caption');
+    const currentCard = e.target.closest('.card');
+    const currentCardCaption = currentCard.querySelector('.card__caption');
 
-      cardPreviewImage.src = e.target.src;
-      cardPreviewCaption.textContent = currentCardCaption.textContent;
-    });
-    cardRemoveBtn.addEventListener('click', e => e.target.closest('li').remove());
-    cardLikeBtn.addEventListener('click', e => {
-      e.target.addEventListener('animationend', e => e.target.classList.remove('scaling'));
-      e.target.classList.toggle('card__like-button_checked');
-      e.target.classList.add('scaling');
-    });
+    cardPreviewImage.src = e.target.src;
+    cardPreviewCaption.textContent = currentCardCaption.textContent;
+  });
+  cardRemoveBtn.addEventListener('click', e => e.target.closest('li').remove());
+  cardLikeBtn.addEventListener('click', e => {
+    e.target.addEventListener('animationend', e => e.target.classList.remove('scaling'));
+    e.target.classList.toggle('card__like-button_checked');
+    e.target.classList.add('scaling');
+  });
 
-    return newCardItem;
-  }
-
-  return null;
+  return newCardItem;
 }
 
 function addCardItem(cardItem) {
-  if(cardItem !== null) {
-    cardItems.append(cardItem);
-  }
-}
-
-function onEditProfileFormSubmit(evt) {
-  evt.preventDefault();
-
-  if(profileInputTitle.value !== '') {
-    profileTitle.textContent = profileInputTitle.value;
-  }
-  if(profileInputSubtitle.value !== '') {
-    profileSubtitle.textContent = profileInputSubtitle.value;
-  }
-
-  closePopup(editProfilePopup);
+  cardItems.append(cardItem);
 }
 
 function onEditProfileFormReset(evt) {
   evt.preventDefault();
 
-  profileInputTitle.value = profileTitle.textContent;
-  profileInputSubtitle.value = profileSubtitle.textContent;
+  nameInputTitle.value = profileName.textContent;
+  aboutInputSubtitle.value = profileAbout.textContent;
 }
 
-function onAddCardFormSubmit(evt) {
-  evt.preventDefault();
+function onEditProfileFormSubmit() {
+  profileName.textContent = nameInputTitle.value;
+  profileAbout.textContent = aboutInputSubtitle.value;
 
+  closePopup(editProfilePopup);
+}
+
+function onAddCardFormSubmit() {
   addCardItem(createCardItem({
     "name": cardInputName.value,
     "url": cardInputUrl.value
   }));
 
-  addCardForm.reset();
+  resetPopupForm(addCardForm);
   closePopup(addCardPopup);
 }
 
-function onAddCardCloseButtonClick() {
-  addCardForm.reset();
-  closePopup(addCardPopup);
+function resetPopupForm(popupForm) {
+  popupForm.reset();
+  resetFormValidation(popupForm, validationConfig);
 }
 
 editProfileForm.addEventListener('submit', onEditProfileFormSubmit);
 editProfileForm.addEventListener('reset', onEditProfileFormReset);
-editProfileCloseBtn.addEventListener('click', () => closePopup(editProfilePopup));
 editProfileBtn.addEventListener('click', () => openPopup(editProfilePopup));
+editProfileCloseBtn.addEventListener('click', () => {
+  resetPopupForm(editProfileForm);
+  closePopup(editProfilePopup);
+});
 
 addCardForm.addEventListener('submit', onAddCardFormSubmit);
-addCardCloseBtn.addEventListener('click', onAddCardCloseButtonClick);
 addCardBtn.addEventListener('click', () => openPopup(addCardPopup));
+addCardCloseBtn.addEventListener('click', () => {
+  resetPopupForm(addCardForm);
+  closePopup(addCardPopup);
+});
 
 cardPreviewCloseBtn.addEventListener('click', () => closePopup(cardPreviewPopup));
 
 setDefaults();
+enableValidation(validationConfig);
