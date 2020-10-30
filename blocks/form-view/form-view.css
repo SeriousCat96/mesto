@@ -1,7 +1,8 @@
 @import url(./__form/form-view__form.css);
 @import url(./__title/form-view__title.css);
+@import url(./__field/form-view__field.css);
 @import url(./__input/form-view__input.css);
-@import url(./__submit-button/form-view__submit-button.css);
+@import url(./__submit/form-view__submit.css);
 
 .form-view {
   color: black;
