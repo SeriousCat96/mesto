@@ -62,10 +62,18 @@ function resetCardItems() {
 
 function openPopup(popup) {
   popup.classList.add('popup_active');
+  document.addEventListener('keyup', onPopupKeyUp)
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_active');
+  document.removeEventListener('keyup', onPopupKeyUp);
+}
+
+function closePopupForm(popupForm) {
+  popupForm.reset();
+  resetFormValidation(popupForm, validationConfig);
+  closePopup(popupForm.closest('.popup'));
 }
 
 function createFromTemplate(template) {
@@ -126,29 +134,33 @@ function onAddCardFormSubmit() {
     "url": cardInputUrl.value
   }));
 
-  resetPopupForm(addCardForm);
-  closePopup(addCardPopup);
+  closePopupForm(addCardForm);
 }
 
-function resetPopupForm(popupForm) {
-  popupForm.reset();
-  resetFormValidation(popupForm, validationConfig);
+function onPopupKeyUp(evt) {
+  evt.preventDefault();
+
+  const activePopup = document.querySelector('.popup_active');
+  const activeForm  = activePopup.querySelector('.form-view__form');
+
+  if(evt.key === 'Escape') {
+    if(activeForm !== null) {
+      closePopupForm(activeForm);
+      return;
+    }
+
+    closePopup(activePopup);
+  };
 }
 
 editProfileForm.addEventListener('submit', onEditProfileFormSubmit);
 editProfileForm.addEventListener('reset', onEditProfileFormReset);
 editProfileBtn.addEventListener('click', () => openPopup(editProfilePopup));
-editProfileCloseBtn.addEventListener('click', () => {
-  resetPopupForm(editProfileForm);
-  closePopup(editProfilePopup);
-});
+editProfileCloseBtn.addEventListener('click', () => closePopupForm(editProfileForm));
 
 addCardForm.addEventListener('submit', onAddCardFormSubmit);
 addCardBtn.addEventListener('click', () => openPopup(addCardPopup));
-addCardCloseBtn.addEventListener('click', () => {
-  resetPopupForm(addCardForm);
-  closePopup(addCardPopup);
-});
+addCardCloseBtn.addEventListener('click', () => closePopupForm(addCardForm));
 
 cardPreviewCloseBtn.addEventListener('click', () => closePopup(cardPreviewPopup));
 
