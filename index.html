@@ -29,53 +29,53 @@
         <ul class="list cards-grid__items"></ul>
       </section>
     </main>
-    <section class="popup" id="edit-profile">
-      <div class="form-view popup__view">
-        <button class="button popup__close-button" type="button"></button>
-        <h2 class="form-view__title">Редактировать профиль</h2>
-        <form class="form-view__form" name="profile" method="POST" novalidate>
-          <label class="form-view__field">
-            <input class="form-view__input" id="name" name="name" type="text" minlength="2" maxlength="40" placeholder="Имя" required>
-            <span class="error" id="name-error"></span>
-          </label>
-          <label class="form-view__field">
-            <input class="form-view__input" id="about" name="about" type="text" minlength="2" maxlength="200" placeholder="О себе" required>
-            <span class="error" id="about-error"></span>
-          </label>
-          <button class="button form-view__submit" type="submit">Сохранить</button>
-        </form>
-      </div>
-    </section>
-    <section class="popup" id="add-card">
-      <div class="form-view popup__view">
-        <button class="button popup__close-button" type="button"></button>
-        <h2 class="form-view__title">Новое место</h2>
-        <form class="form-view__form" name="card" method="POST" novalidate>
-          <label class="form-view__field">
-            <input class="form-view__input" id="card-name" name="name" type="text" minlength="2" maxlength="30" placeholder="Название" required>
-            <span class="error" id="card-name-error"></span>
-          </label>
-          <label class="form-view__field">
-            <input class="form-view__input" id="card-url" name="url" type="url" placeholder="Ссылка на картинку" required>
-            <span class="error" id="card-url-error"></span>
-          </label>
-          <button class="button form-view__submit" type="submit">Создать</button>
-        </form>
-      </div>
-    </section>
-    <section class="popup" id="card-preview">
-      <figure class="picture-view popup__view">
-        <div class="picture-view__container">
-          <button class="button popup__close-button" type="button"></button>
-          <img class="picture-view__image" src="#" alt="Изображение карточки">
-        </div>
-        <figcaption class="picture-view__caption text-ellipsis"></figcaption>
-      </figure>
-    </section>
     <footer class="footer page__section page__section_indent-size_s">
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
   </div>
+  <section class="popup" id="edit-profile">
+    <div class="form-view popup__view">
+      <button class="button popup__close-button" type="button"></button>
+      <h2 class="form-view__title">Редактировать профиль</h2>
+      <form class="form-view__form" name="profile" method="POST" novalidate>
+        <label class="form-view__field">
+          <input class="form-view__input" id="name" name="name" type="text" minlength="2" maxlength="40" placeholder="Имя" required>
+          <span class="error" id="name-error"></span>
+        </label>
+        <label class="form-view__field">
+          <input class="form-view__input" id="about" name="about" type="text" minlength="2" maxlength="200" placeholder="О себе" required>
+          <span class="error" id="about-error"></span>
+        </label>
+        <button class="button form-view__submit" type="submit">Сохранить</button>
+      </form>
+    </div>
+  </section>
+  <section class="popup" id="add-card">
+    <div class="form-view popup__view">
+      <button class="button popup__close-button" type="button"></button>
+      <h2 class="form-view__title">Новое место</h2>
+      <form class="form-view__form" name="card" method="POST" novalidate>
+        <label class="form-view__field">
+          <input class="form-view__input" id="card-name" name="name" type="text" minlength="2" maxlength="30" placeholder="Название" required>
+          <span class="error" id="card-name-error"></span>
+        </label>
+        <label class="form-view__field">
+          <input class="form-view__input" id="card-url" name="url" type="url" placeholder="Ссылка на картинку" required>
+          <span class="error" id="card-url-error"></span>
+        </label>
+        <button class="button form-view__submit" type="submit">Создать</button>
+      </form>
+    </div>
+  </section>
+  <section class="popup" id="card-preview">
+    <figure class="picture-view popup__view">
+      <div class="picture-view__container">
+        <button class="button popup__close-button" type="button"></button>
+        <img class="picture-view__image" src="#" alt="Изображение карточки">
+      </div>
+      <figcaption class="picture-view__caption text-ellipsis"></figcaption>
+    </figure>
+  </section>
   <template id="card-template">
     <li>
       <article class="card">

@@ -47,6 +47,7 @@ function closePopup(popup) {
 
 function closePopupForm(popupForm) {
   popupForm.reset();
+  resetFormValidation(popupForm, validationConfig)
   closePopup(popupForm.closest('.popup'));
 }
 
@@ -85,7 +86,7 @@ function createCardItem(cardData) {
 }
 
 function addCardItem(cardItem) {
-  cardItems.append(cardItem);
+  cardItems.prepend(cardItem);
 }
 
 function onEditProfileFormReset(evt) {

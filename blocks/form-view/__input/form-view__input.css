@@ -15,8 +15,7 @@
 
 .form-view__input:active, .form-view__input:focus {
   padding: 13px 4px;
-  border-color: none;
-  outline-color: dodgerblue;
+  outline: none;
 }
 
 @media screen and (max-width: 500px) {

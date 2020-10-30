@@ -6,8 +6,7 @@
   font-size: 12px;
   line-height: 1.25;
   text-align: left;
-  -ms-flex-item-align: start;
-  align-self: flex-start;
   position: absolute;
   top: calc(100% + 10px);
+  left: 0;
 }
