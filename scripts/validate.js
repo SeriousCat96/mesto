@@ -32,7 +32,7 @@ function hideInputError(formElement, inputElement, { inputErrorClass, errorClass
 };
 
 function checkInputValidity(formElement, inputElement, errorClasses) {
-  if(!inputElement.checkValidity()) {
+  if(!inputElement.validity.valid) {
     showInputError(formElement, inputElement, inputElement.validationMessage, errorClasses);
   }
   else {
@@ -41,15 +41,17 @@ function checkInputValidity(formElement, inputElement, errorClasses) {
 };
 
 function hasInvalidInput(inputList) {
-  return inputList.some(inputElement => !inputElement.checkValidity());
+  return inputList.some(inputElement => !inputElement.validity.valid);
 }
 
 function toggleButtonState(inputList, buttonElement, inactiveButtonClass) {
   if(hasInvalidInput(inputList)) {
     buttonElement.classList.add(inactiveButtonClass);
+    buttonElement.disabled = true;
   }
   else {
     buttonElement.classList.remove(inactiveButtonClass);
+    buttonElement.disabled = false;
   }
 };
 
