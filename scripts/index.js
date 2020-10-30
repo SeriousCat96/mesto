@@ -62,19 +62,18 @@ function resetCardItems() {
 
 function openPopup(popup) {
   popup.classList.add('popup_active');
-  popup.addEventListener('click', onPopupOverlayClick);
+  popup.addEventListener('mousedown', onPopupOverlayMouseDown);
   document.addEventListener('keyup', onDocumentKeyUp);
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_active');
-  popup.removeEventListener('click', onPopupOverlayClick);
+  popup.removeEventListener('mousedown', onPopupOverlayMouseDown);
   document.removeEventListener('keyup', onDocumentKeyUp);
 }
 
 function closePopupForm(popupForm) {
   popupForm.reset();
-  resetFormValidation(popupForm, validationConfig);
   closePopup(popupForm.closest('.popup'));
 }
 
@@ -155,17 +154,16 @@ function onDocumentKeyUp(evt) {
   };
 }
 
-function onPopupOverlayClick(evt) {
-  const activePopup = document.querySelector('.popup_active');
-  const activeForm  = activePopup.querySelector('.form-view__form');
+function onPopupOverlayMouseDown(evt) {
+  if(evt.target === evt.currentTarget) {
+    const activeForm  = evt.currentTarget.querySelector('.form-view__form');
 
-  if(evt.target === activePopup) {
     if(activeForm !== null) {
       closePopupForm(activeForm);
       return;
     }
 
-    closePopup(activePopup);
+    closePopup(evt.currentTarget);
   };
 }
 
