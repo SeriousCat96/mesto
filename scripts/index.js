@@ -62,12 +62,14 @@ function resetCardItems() {
 
 function openPopup(popup) {
   popup.classList.add('popup_active');
-  document.addEventListener('keyup', onPopupKeyUp)
+  popup.addEventListener('click', onPopupOverlayClick);
+  document.addEventListener('keyup', onDocumentKeyUp);
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_active');
-  document.removeEventListener('keyup', onPopupKeyUp);
+  popup.removeEventListener('click', onPopupOverlayClick);
+  document.removeEventListener('keyup', onDocumentKeyUp);
 }
 
 function closePopupForm(popupForm) {
@@ -137,13 +139,27 @@ function onAddCardFormSubmit() {
   closePopupForm(addCardForm);
 }
 
-function onPopupKeyUp(evt) {
+function onDocumentKeyUp(evt) {
   evt.preventDefault();
 
   const activePopup = document.querySelector('.popup_active');
   const activeForm  = activePopup.querySelector('.form-view__form');
 
   if(evt.key === 'Escape') {
+    if(activeForm !== null) {
+      closePopupForm(activeForm);
+      return;
+    }
+
+    closePopup(activePopup);
+  };
+}
+
+function onPopupOverlayClick(evt) {
+  const activePopup = document.querySelector('.popup_active');
+  const activeForm  = activePopup.querySelector('.form-view__form');
+
+  if(evt.target === activePopup) {
     if(activeForm !== null) {
       closePopupForm(activeForm);
       return;
