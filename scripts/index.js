@@ -58,6 +58,7 @@ function createFromTemplate(template) {
 function createCardItem(cardData) {
   const newCardItem = createFromTemplate(cardTemplate);
 
+  const cardSpinner = newCardItem.querySelector('.card').appendChild(createSpinnerElement());
   const cardImage = newCardItem.querySelector('.card__image');
   const cardCaption = newCardItem.querySelector('.card__caption');
   const cardRemoveBtn = newCardItem.querySelector('.card__remove-button');
@@ -66,6 +67,8 @@ function createCardItem(cardData) {
   cardCaption.textContent = cardData.name;
   cardImage.src = cardData.url;
 
+  cardImage.addEventListener('load', () => cardSpinner.remove());
+  cardImage.addEventListener('error', () => cardSpinner.remove());
   cardImage.addEventListener('click', e => {
     openPopup(cardPreviewPopup);
 
