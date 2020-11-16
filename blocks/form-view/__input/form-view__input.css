@@ -14,7 +14,6 @@
 }
 
 .form-view__input:active, .form-view__input:focus {
-  padding: 13px 4px;
   outline: none;
 }
 
