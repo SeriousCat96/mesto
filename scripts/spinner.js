@@ -1,15 +1,33 @@
-function renderSpinner(spinnerElement, isVisible) {
-  if(isVisible) {
-    spinnerElement.classList.add('spinner_visible');
-  }
-  else {
-    spinnerElement.classList.remove('spinner_visible');
-  }
-}
+const config = {
+  spinnerClass : 'spinner',
+  spinnerVisibleClass : 'spinner_visible'
+};
 
-function createSpinnerElement() {
-  const spinner = document.createElement('div');
-  spinner.classList.add('spinner', 'spinner_visible');
+export class Spinner {
+  constructor(ownerElement) {
+    this._config = config;
+    this._createElement(ownerElement);
+  }
 
-  return spinner;
+  render(isVisible) {
+    if (this.spinnerElement) {
+      if (isVisible) {
+        this.spinnerElement.classList.add(this._config.spinnerVisibleClass);
+      } else {
+        this.spinnerElement.classList.remove(this._config.spinnerVisibleClass);
+      }
+    }
+  }
+
+  remove() {
+    this.spinnerElement.remove();
+    this.spinnerElement = null;
+  }
+
+  _createElement(ownerElement) {
+    this.spinnerElement = document.createElement('div');
+    this.spinnerElement.classList.add(this._config.spinnerClass, this._config.spinnerVisibleClass);
+
+    ownerElement.appendChild(this.spinnerElement);
+  }
 }

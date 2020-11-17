@@ -30,7 +30,7 @@ function hideInputError(formElement, inputElement, { inputErrorClass, errorClass
 };
 
 function checkInputValidity(formElement, inputElement, errorClasses) {
-  if(!inputElement.validity.valid) {
+  if (!inputElement.validity.valid) {
     showInputError(formElement, inputElement, inputElement.validationMessage, errorClasses);
   }
   else {
@@ -43,7 +43,7 @@ function hasInvalidInput(inputList) {
 }
 
 function toggleSubmitState(inputList, submitElement, inactiveSubmitClass) {
-  if(hasInvalidInput(inputList)) {
+  if (hasInvalidInput(inputList)) {
     submitElement.classList.add(inactiveSubmitClass);
     submitElement.disabled = true;
   }
