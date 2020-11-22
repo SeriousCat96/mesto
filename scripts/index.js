@@ -1,12 +1,11 @@
+import { defaultCards } from './data.js';
 import { Card } from './Card.js';
 import {
   editProfileBtn, profileName, profileAbout, editProfilePopup,
   editProfileForm, nameInputTitle, aboutInputSubtitle, addCardBtn,
-  addCardPopup, addCardForm, cardInputName, cardInputUrl,
+  addCardPopup, addCardForm, cardInputName, cardInputUrl, validationConfig,
   editProfileFormValidator, addCardFormValidator, cardTemplateSelector, cardItems
 } from './constants.js';
-import { defaultCardList } from './data.js';
-import { config as validationConfig } from './FormValidator.js';
 
 function setEventListeners() {
   editProfileForm.addEventListener('submit', onEditProfileFormSubmit);
@@ -24,20 +23,11 @@ function setDefaults() {
 }
 
 function resetCardItems() {
-  defaultCardList.forEach(
+  defaultCards.forEach(
     cardData => {
       const card = new Card(cardData, cardTemplateSelector);
       addCardItem(card.createElement());
     });
-}
-
-function resetFormInputs(form) {
-  Array
-    .from(form.querySelectorAll(validationConfig.inputSelector))
-    .forEach(
-      (input) => {
-        input.value = ''
-      });
 }
 
 function addCardItem(cardItem) {
@@ -62,7 +52,13 @@ function onEditProfileFormSubmit(evt) {
 
 function onAddCardFormReset(evt) {
   evt.preventDefault();
-  resetFormInputs(addCardForm);
+
+  Array
+    .from(addCardForm.querySelectorAll(validationConfig.inputSelector))
+    .forEach(
+      (input) => {
+        input.value = ''
+      });
 }
 
 function onAddCardFormSubmit(evt) {

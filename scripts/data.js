@@ -1,4 +1,4 @@
-export const defaultCardList = [
+export const defaultCards = [
   {
     name: 'Архыз',
     url: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'

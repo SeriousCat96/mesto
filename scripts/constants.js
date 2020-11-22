@@ -1,10 +1,18 @@
 import { FormPopup } from './FormPopup.js';
-import { FormValidator, config as validationConfig } from './FormValidator.js';
+import { ImageViewPopup } from './ImageViewPopup.js';
+import { FormValidator } from './FormValidator.js';
 
-
-export const popupActiveClass = 'popup_active';
-export const popupCloseBtnSelector = '.popup__close-button';
 export const formSelector = '.form-view__form';
+export const inputSelector = '.form-view__input';
+export const submitSelector = '.form-view__submit';
+export const cardTemplateSelector = '#card-template';
+export const popupCloseBtnSelector = '.popup__close-button';
+export const inactiveSubmitClass = 'form-view__submit_disabled';
+export const inputErrorClass = 'form-view__input_type_error';
+export const errorClass = 'error_visible';
+export const popupActiveClass = 'popup_active';
+export const spinnerClass = 'spinner';
+export const spinnerVisibleClass = 'spinner_visible';
 
 export const editProfileBtn = document.querySelector('.profile__button.profile__button_type_edit');
 export const profileName = document.querySelector('.profile__title');
@@ -22,14 +30,22 @@ export const addCardForm = addCardPopup.form;
 export const cardInputName = addCardForm.elements.name;
 export const cardInputUrl = addCardForm.elements.url;
 
+
+export const validationConfig = {
+  formSelector,
+  inputSelector,
+  submitSelector,
+  inactiveSubmitClass,
+  inputErrorClass,
+  errorClass
+};
 export const editProfileFormValidator = new FormValidator(validationConfig, editProfileForm);
 export const addCardFormValidator = new FormValidator(validationConfig, addCardForm);
 
-export const cardTemplateSelector = '#card-template';
 export const cardTemplate = document.querySelector(cardTemplateSelector);
 export const cardItems = document.querySelector('.cards-grid__items');
 
-export const cardPreviewPopup = document.querySelector('.popup#card-preview');
-export const cardPreviewImage = cardPreviewPopup.querySelector('.picture-view__image');
-export const cardPreviewCaption = cardPreviewPopup.querySelector('.picture-view__caption');
+export const cardPreviewPopup = new ImageViewPopup('.popup#card-preview');
+export const cardPreviewImage = document.querySelector('.popup#card-preview .picture-view__image');
+export const cardPreviewCaption = document.querySelector('.popup#card-preview .picture-view__caption');
 

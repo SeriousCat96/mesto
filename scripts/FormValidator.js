@@ -1,12 +1,6 @@
-export const config = {
-  formSelector: '.form-view__form',
-  inputSelector: '.form-view__input',
-  submitSelector: '.form-view__submit',
-  inactiveSubmitClass: 'form-view__submit_disabled',
-  inputErrorClass: 'form-view__input_type_error',
-  errorClass: 'error_visible'
-};
-
+/**
+ * Класс-валидатор формы.
+ */
 export class FormValidator {
   constructor(config, form) {
     this._config = config;
@@ -15,6 +9,9 @@ export class FormValidator {
     this._submitElement = form.querySelector(config.submitSelector);
   }
 
+  /**
+   * Включить валидацию формы
+   */
   enableValidation() {
     this._form.addEventListener('submit', (evt) => evt.preventDefault());
     this._form.addEventListener('reset', () => this._resetValidation());
