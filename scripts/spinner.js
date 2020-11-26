@@ -33,7 +33,7 @@ export class Spinner {
   _createElement(ownerElement) {
     this.spinnerElement = document.createElement('div');
     this.spinnerElement.classList.add(spinnerClass, spinnerVisibleClass);
-
+    
     ownerElement.appendChild(this.spinnerElement);
   }
 }
