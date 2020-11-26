@@ -13,6 +13,7 @@
 * HTML5.
 * CSS.
 * JavaScript.
+* JS modules.
 * Структура проекта организована согласно [БЭМ](https://ru.bem.info/).
 
 Сайт опубликован на [GitHub Pages](https://seriouscat96.github.io/mesto/).
