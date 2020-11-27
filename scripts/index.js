@@ -1,82 +1,88 @@
+import * as constants from './constants.js';
 import { defaultCards } from './data.js';
 import { Card } from './Card.js';
-import {
-  editProfileBtn, profileName, profileAbout, editProfilePopup,
-  editProfileForm, nameInputTitle, aboutInputSubtitle, addCardBtn,
-  addCardPopup, addCardForm, cardInputName, cardInputUrl, validationConfig,
-  editProfileFormValidator, addCardFormValidator, cardTemplateSelector, cardItems
-} from './constants.js';
 
 function setEventListeners() {
-  editProfileForm.addEventListener('submit', onEditProfileFormSubmit);
-  editProfileForm.addEventListener('reset', onEditProfileFormReset);
-  editProfileBtn.addEventListener('click', () => editProfilePopup.open());
+  constants.editProfileForm.addEventListener('submit', onEditProfileFormSubmit);
+  constants.editProfileForm.addEventListener('reset', onEditProfileFormReset);
+  constants.editProfileBtn.addEventListener('click', () => constants.editProfilePopup.open());
 
-  addCardForm.addEventListener('submit', onAddCardFormSubmit);
-  addCardForm.addEventListener('reset', onAddCardFormReset);
-  addCardBtn.addEventListener('click', () => addCardPopup.open());
+  constants.addCardForm.addEventListener('submit', onAddCardFormSubmit);
+  constants.addCardBtn.addEventListener('click', () => constants.addCardPopup.open());
 }
 
 function setDefaults() {
   resetCardItems();
-  editProfileForm.reset();
+  constants.editProfileForm.reset();
 }
 
 function resetCardItems() {
   defaultCards.forEach(
     cardData => {
-      const card = new Card(cardData, cardTemplateSelector);
+      const card = createCard(cardData);
       addCardItem(card.createElement());
     });
 }
 
+function createCard(cardData) {
+  return new Card(cardData, constants.cardTemplateSelector,
+    {
+      '.card__image' : [
+        {
+          'click' : () => {
+            constants.cardPreviewPopup.image.src = '';
+            constants.cardPreviewPopup.caption.textContent = '';
+
+            openCardPopup(cardData);
+          }
+        }
+      ]
+    });
+}
+
 function addCardItem(cardItem) {
-  cardItems.prepend(cardItem);
+  constants.cardItems.prepend(cardItem);
 }
 
-function onEditProfileFormReset(evt) {
-  evt.preventDefault();
+function openCardPopup(cardData) {
+  constants.cardPreviewPopup.caption.textContent = cardData.name;
+  constants.cardPreviewPopup.image.src = cardData.url;
 
-  nameInputTitle.value = profileName.textContent;
-  aboutInputSubtitle.value = profileAbout.textContent;
-}
-
-function onEditProfileFormSubmit(evt) {
-  evt.preventDefault();
-
-  profileName.textContent = nameInputTitle.value;
-  profileAbout.textContent = aboutInputSubtitle.value;
-
-  editProfilePopup.close();
-}
-
-function onAddCardFormReset(evt) {
-  evt.preventDefault();
-
-  Array
-    .from(addCardForm.querySelectorAll(validationConfig.inputSelector))
-    .forEach(
-      (input) => {
-        input.value = ''
-      });
+  constants.cardPreviewPopup.open();
 }
 
 function onAddCardFormSubmit(evt) {
   evt.preventDefault();
 
   const cardData = {
-    "name": cardInputName.value,
-    "url": cardInputUrl.value
+    "name": constants.cardInputName.value,
+    "url": constants.cardInputUrl.value
   };
-  const card = new Card(cardData, cardTemplateSelector);
+  const card = createCard(cardData);
 
   addCardItem(card.createElement());
-  addCardPopup.close();
+  constants.addCardPopup.close();
+}
+
+function onEditProfileFormReset(evt) {
+  evt.preventDefault();
+
+  constants.nameInputTitle.value = constants.profileName.textContent;
+  constants.aboutInputSubtitle.value = constants.profileAbout.textContent;
+}
+
+function onEditProfileFormSubmit(evt) {
+  evt.preventDefault();
+
+  constants.profileName.textContent = constants.nameInputTitle.value;
+  constants.profileAbout.textContent = constants.aboutInputSubtitle.value;
+
+  constants.editProfilePopup.close();
 }
 
 setEventListeners();
 setDefaults();
 
-addCardFormValidator.enableValidation();
-editProfileFormValidator.enableValidation();
+constants.addCardFormValidator.enableValidation();
+constants.editProfileFormValidator.enableValidation();
 

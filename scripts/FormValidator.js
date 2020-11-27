@@ -13,7 +13,11 @@ export class FormValidator {
    * Включить валидацию формы
    */
   enableValidation() {
-    this._form.addEventListener('submit', (evt) => evt.preventDefault());
+    this._form.addEventListener('submit',
+      (evt) => {
+        evt.preventDefault();
+        this._form.reset();
+      });
     this._form.addEventListener('reset', () => this._resetValidation());
     this._setEventListeners();
   };
