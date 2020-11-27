@@ -12,6 +12,7 @@ export class FormPopup extends Popup {
 
   /**
    * Возвращает форму попапа.
+   *
    * @returns форма попапа.
    */
   get form() {
@@ -20,6 +21,8 @@ export class FormPopup extends Popup {
 
   /**
    * Закрывает попап.
+   *
+   * @override
    */
   close() {
     this._form.reset();

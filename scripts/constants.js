@@ -1,12 +1,15 @@
 import { FormPopup } from './FormPopup.js';
-import { ImageViewPopup } from './ImageViewPopup.js';
+import { ImagePreviewPopup } from './ImagePreviewPopup.js';
 import { FormValidator } from './FormValidator.js';
 
 export const formSelector = '.form-view__form';
 export const inputSelector = '.form-view__input';
 export const submitSelector = '.form-view__submit';
 export const cardTemplateSelector = '#card-template';
+export const cardPreviewImageSelector = '.picture-view__image';
+export const cardPreviewCaptionSelector = '.picture-view__caption';
 export const popupCloseBtnSelector = '.popup__close-button';
+
 export const inactiveSubmitClass = 'form-view__submit_disabled';
 export const inputErrorClass = 'form-view__input_type_error';
 export const errorClass = 'error_visible';
@@ -45,7 +48,5 @@ export const addCardFormValidator = new FormValidator(validationConfig, addCardF
 export const cardTemplate = document.querySelector(cardTemplateSelector);
 export const cardItems = document.querySelector('.cards-grid__items');
 
-export const cardPreviewPopup = new ImageViewPopup('.popup#card-preview');
-export const cardPreviewImage = document.querySelector('.popup#card-preview .picture-view__image');
-export const cardPreviewCaption = document.querySelector('.popup#card-preview .picture-view__caption');
+export const cardPreviewPopup = new ImagePreviewPopup('.popup#card-preview');
 
