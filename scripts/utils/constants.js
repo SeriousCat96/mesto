@@ -1,6 +1,6 @@
-import { FormPopup } from './FormPopup.js';
-import { ImagePreviewPopup } from './ImagePreviewPopup.js';
-import { FormValidator } from './FormValidator.js';
+import { FormPopup } from '../components/FormPopup.js';
+import { ImagePreviewPopup } from '../components/ImagePreviewPopup.js';
+import { FormValidator } from '../components/FormValidator.js';
 
 export const formSelector = '.form-view__form';
 export const inputSelector = '.form-view__input';

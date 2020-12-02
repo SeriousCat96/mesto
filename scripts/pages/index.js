@@ -1,6 +1,6 @@
-import * as constants from './constants.js';
-import { defaultCards } from './data.js';
-import { Card } from './Card.js';
+import * as constants from '../utils/constants.js';
+import { defaultCards } from '../utils/data.js';
+import { Card } from '../components/Card.js';
 
 function setEventListeners() {
   constants.editProfileForm.addEventListener('submit', onEditProfileFormSubmit);
@@ -26,17 +26,11 @@ function resetCardItems() {
 
 function createCard(cardData) {
   return new Card(cardData, constants.cardTemplateSelector,
-    {
-      '.card__image' : [
-        {
-          'click' : () => {
-            constants.cardPreviewPopup.image.src = '';
-            constants.cardPreviewPopup.caption.textContent = '';
+    () => {
+      constants.cardPreviewPopup.image.src = '';
+      constants.cardPreviewPopup.caption.textContent = '';
 
-            openCardPopup(cardData);
-          }
-        }
-      ]
+      openCardPopup(cardData); 
     });
 }
 

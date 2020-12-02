@@ -1,5 +1,5 @@
 
-import { popupActiveClass, popupCloseBtnSelector } from './constants.js';
+import { popupActiveClass, popupCloseBtnSelector } from '../utils/constants.js';
 
 /**
  * Базовый класс всплывающего окна (попап).

@@ -1,5 +1,5 @@
 import { Popup } from './Popup.js';
-import { formSelector } from './constants.js';
+import { formSelector } from '../utils/constants.js';
 
 /**
  * Класс попапа с формой.

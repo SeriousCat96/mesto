@@ -1,4 +1,4 @@
-import { spinnerClass, spinnerVisibleClass } from './constants.js';
+import { spinnerClass, spinnerVisibleClass } from '../utils/constants.js';
 
 /**
  * Класс для виджета "спиннер" (отрисовывается при загрузке элемента).

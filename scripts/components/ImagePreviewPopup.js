@@ -1,5 +1,5 @@
 import { Popup } from './Popup.js';
-import { cardPreviewImageSelector, cardPreviewCaptionSelector } from './constants.js';
+import { cardPreviewImageSelector, cardPreviewCaptionSelector } from '../utils/constants.js';
 
 /**
  * Класс попапа предпросмотра изображения.
