@@ -5,9 +5,10 @@ import { formSelector } from '../utils/constants.js';
  * Класс попапа с формой.
  */
 export class FormPopup extends Popup {
-  constructor(popupSelector) {
+  constructor(popupSelector, eventListeners) {
     super(popupSelector);
-    this._form = this._popup.querySelector(formSelector);
+    this._form = this._popupElement.querySelector(formSelector);
+    this._eventListeners = eventListeners;
   }
 
   /**
@@ -20,12 +21,34 @@ export class FormPopup extends Popup {
   }
 
   /**
-   * Закрывает попап.
-   *
+   * Устанавливает слушатели событий.
+   * 
    * @override
    */
-  close() {
-    this._form.reset();
-    super.close();
+  setEventListeners() {
+    Object.keys(this._eventListeners).forEach(
+      (eventType) => {
+        const handleEvent = this._eventListeners[eventType].bind(this._form);
+        this._form.addEventListener(eventType,
+           (evt) => {
+             evt.preventDefault();
+             handleEvent(this._getInputValues());
+             this._form.reset();
+           });
+      }
+    );
+
+    super.setEventListeners();
+  }
+
+  _getInputValues() {
+    this._inputList = this._form.querySelectorAll('.form-view__input');
+    this._formValues = {};
+  
+    this._inputList.forEach(input => {
+      this._formValues[input.name] = input.value;
+    });
+  
+    return this._formValues;
   }
 }

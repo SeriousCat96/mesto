@@ -6,11 +6,7 @@ import { popupActiveClass, popupCloseBtnSelector } from '../utils/constants.js';
  */
 export class Popup {
   constructor(popupSelector) {
-    this._popup = document.querySelector(popupSelector);
-    this._popup
-      .querySelector(popupCloseBtnSelector)
-      .addEventListener('click', () => this.close());
-
+    this._popupElement = document.querySelector(popupSelector);
     this._onDocumentKeyUp =
       (evt) => {
         evt.preventDefault();
@@ -31,25 +27,26 @@ export class Popup {
    * Открывает попап.
    */
   open() {
-    this._popup.classList.add(popupActiveClass);
-    this._setEventListeners();
+    this._popupElement.classList.add(popupActiveClass);
+    this._popupElement.addEventListener('mousedown', this._onPopupOverlayMouseDown);
+    document.addEventListener('keyup', this._onDocumentKeyUp);
   }
 
   /**
    * Закрывает попап.
    */
   close() {
-    this._popup.classList.remove(popupActiveClass);
-    this._removeEventListeners();
-  }
-
-  _setEventListeners () {
-    this._popup.addEventListener('mousedown', this._onPopupOverlayMouseDown);
-    document.addEventListener('keyup', this._onDocumentKeyUp);
-  }
-
-  _removeEventListeners () {
-    this._popup.removeEventListener('mousedown', this._onPopupOverlayMouseDown);
+    this._popupElement.classList.remove(popupActiveClass);
+    this._popupElement.removeEventListener('mousedown', this._onPopupOverlayMouseDown);
     document.removeEventListener('keyup', this._onDocumentKeyUp);
+  }
+
+  /**
+   * Устанавливает слушатели событий.
+   */
+  setEventListeners() {
+    this._popupElement
+      .querySelector(popupCloseBtnSelector)
+      .addEventListener('click', () => this.close());
   }
 }

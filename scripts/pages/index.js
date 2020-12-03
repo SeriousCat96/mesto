@@ -2,35 +2,25 @@ import * as constants from '../utils/constants.js';
 import { cards } from '../utils/data.js';
 import { Card } from '../components/Card.js';
 import { Section } from '../components/Section.js';
+import { FormPopup } from '../components/FormPopup.js';
+import { ImagePreviewPopup } from '../components/ImagePreviewPopup.js';
+import { FormValidator } from '../components/FormValidator.js';
 
 function setEventListeners() {
-  constants.editProfileForm.addEventListener('submit', onEditProfileFormSubmit);
-  constants.editProfileForm.addEventListener('reset', onEditProfileFormReset);
-  constants.editProfileBtn.addEventListener('click', () => constants.editProfilePopup.open());
+  constants.editProfileBtn.addEventListener('click', () => editProfilePopup.open());
+  constants.addCardBtn.addEventListener('click', () => addCardPopup.open());
 
-  constants.addCardForm.addEventListener('submit', onAddCardFormSubmit);
-  constants.addCardBtn.addEventListener('click', () => constants.addCardPopup.open());
+  editProfilePopup.setEventListeners();
+  addCardPopup.setEventListeners();
 }
-
-// function setDefaults() {
-//   constants.editProfileForm.reset();
-// }
 
 function createCard(cardData) {
-  return new Card(cardData, constants.cardTemplateSelector,
-    () => {
-      constants.cardPreviewPopup.image.src = '';
-      constants.cardPreviewPopup.caption.textContent = '';
-
-      openCardPopup(cardData); 
-    });
+  return new Card(cardData, constants.cardTemplateSelector, onCardClick);
 }
 
-function openCardPopup(cardData) {
-  constants.cardPreviewPopup.caption.textContent = cardData.name;
-  constants.cardPreviewPopup.image.src = cardData.url;
-
-  constants.cardPreviewPopup.open();
+function setCardPreviewData(url, caption) {
+  constants.cardPreviewPopup.caption.textContent = caption;
+  constants.cardPreviewPopup.image.src = url;
 }
 
 function addCardElement(cardData) {
@@ -38,36 +28,53 @@ function addCardElement(cardData) {
   cardItems.addItem(card.createElement());
 }
 
-function onAddCardFormSubmit(evt) {
-  evt.preventDefault();
+function onCardClick(evt) {
+  const url = evt.target.src;
+  const caption = evt.target
+    .closest('.card')
+    .querySelector('.card__caption')
+    .textContent;
 
+  setCardPreviewData(url, caption);
+  constants.cardPreviewPopup.open();
+}
+
+function onAddCardFormSubmit({ name, url }) {
   const cardData = {
-    "name": constants.cardInputName.value,
-    "url": constants.cardInputUrl.value
+    "name": name,
+    "url": url
   };
   
   addCardElement(cardData);
-  constants.addCardPopup.close();
+  addCardPopup.close();
 }
 
-function onEditProfileFormReset(evt) {
-  evt.preventDefault();
-
-  constants.nameInputTitle.value = constants.profileName.textContent;
-  constants.aboutInputSubtitle.value = constants.profileAbout.textContent;
+function onEditProfileFormReset() {
+  this.elements.name.value = constants.profileName.textContent;
+  this.elements.about.value = constants.profileAbout.textContent;
 }
 
-function onEditProfileFormSubmit(evt) {
-  evt.preventDefault();
+function onEditProfileFormSubmit({ name, about }) {
+  constants.profileName.textContent = name;
+  constants.profileAbout.textContent = about;
 
-  constants.profileName.textContent = constants.nameInputTitle.value;
-  constants.profileAbout.textContent = constants.aboutInputSubtitle.value;
-
-  constants.editProfilePopup.close();
+  editProfilePopup.close();
 }
+
+const editProfilePopup = new FormPopup(constants.editProfilePopupSelector,
+  {
+    'submit' : onEditProfileFormSubmit,
+    'reset' : onEditProfileFormReset
+  });
+const addCardPopup = new FormPopup(constants.addCardPopupSelector,
+  {
+    'submit' : onAddCardFormSubmit
+  });
+const cardPreviewPopup = new ImagePreviewPopup(constants.addCardPopupSelector, onCardClick);
+const editProfileFormValidator = new FormValidator(constants.validationConfig, editProfilePopup.form);
+const addCardFormValidator = new FormValidator(constants.validationConfig, addCardPopup.form);
 
 setEventListeners();
-// setDefaults();
 
 const cardItems = new Section(
   {
@@ -78,6 +85,6 @@ const cardItems = new Section(
 
 cardItems.renderItems();
 
-constants.addCardFormValidator.enableValidation();
-constants.editProfileFormValidator.enableValidation();
+editProfileFormValidator.enableValidation();
+addCardFormValidator.enableValidation();
 

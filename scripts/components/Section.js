@@ -4,7 +4,7 @@
 export class Section {
   /**
    * Создаёт Section.
-   * @param {Array} items Данные, которые нужно добавить на страницу.
+   * @param {Array} items Данные, которые нужно добавить на страницу при инициализации контейнера.
    * @param {any} renderCallback Коллбэк, который отрисовывет данные.
    * @param {string} containerSelector Селектор контейнера, в который нужно добавить элементы.
    */

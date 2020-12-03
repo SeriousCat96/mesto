@@ -1,7 +1,6 @@
-import { FormPopup } from '../components/FormPopup.js';
-import { ImagePreviewPopup } from '../components/ImagePreviewPopup.js';
-import { FormValidator } from '../components/FormValidator.js';
-
+export const editProfilePopupSelector = '.popup#edit-profile';
+export const addCardPopupSelector = '.popup#add-card';
+export const cardPreviewPopupSelector = '.popup#card-preview';
 export const formSelector = '.form-view__form';
 export const inputSelector = '.form-view__input';
 export const submitSelector = '.form-view__submit';
@@ -22,18 +21,7 @@ export const editProfileBtn = document.querySelector('.profile__button.profile__
 export const profileName = document.querySelector('.profile__title');
 export const profileAbout = document.querySelector('.profile__subtitle');
 
-export const editProfilePopup = new FormPopup('.popup#edit-profile');
-export const editProfileForm = editProfilePopup.form;
-export const nameInputTitle = editProfileForm.elements.name;
-export const aboutInputSubtitle = editProfileForm.elements.about;
-
 export const addCardBtn = document.querySelector('.profile__button.profile__button_type_add');
-
-export const addCardPopup = new FormPopup('.popup#add-card');
-export const addCardForm = addCardPopup.form;
-export const cardInputName = addCardForm.elements.name;
-export const cardInputUrl = addCardForm.elements.url;
-
 
 export const validationConfig = {
   formSelector,
@@ -43,10 +31,5 @@ export const validationConfig = {
   inputErrorClass,
   errorClass
 };
-export const editProfileFormValidator = new FormValidator(validationConfig, editProfileForm);
-export const addCardFormValidator = new FormValidator(validationConfig, addCardForm);
 
 export const cardTemplate = document.querySelector(cardTemplateSelector);
-
-export const cardPreviewPopup = new ImagePreviewPopup('.popup#card-preview');
-
