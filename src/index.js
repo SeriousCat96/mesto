@@ -1,11 +1,13 @@
-import * as constants from '../utils/constants.js';
-import { cards } from '../utils/data.js';
-import { Card } from '../components/Card.js';
-import { Section } from '../components/Section.js';
-import { FormPopup } from '../components/FormPopup.js';
-import { ImagePreviewPopup } from '../components/ImagePreviewPopup.js';
-import { FormValidator } from '../components/FormValidator.js';
-import { UserInfo } from '../components/UserInfo.js';
+import './pages/index.css';
+
+import * as constants from './scripts/utils/constants.js';
+import { cards } from './scripts/utils/data.js';
+import { Card } from './scripts/components/Card.js';
+import { Section } from './scripts/components/Section.js';
+import { FormPopup } from './scripts/components/FormPopup.js';
+import { ImagePreviewPopup } from './scripts/components/ImagePreviewPopup.js';
+import { FormValidator } from './scripts/components/FormValidator.js';
+import { UserInfo } from './scripts/components/UserInfo.js';
 
 function setEventListeners() {
   constants.editProfileBtn.addEventListener('click', () => editProfilePopup.open());

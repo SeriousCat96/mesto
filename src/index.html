@@ -7,17 +7,16 @@
   <meta name="keywords" content="html, css, БЭМ, адаптивная вёрстка, javascript">
   <meta name="author" content="Pavel Shevelev">
   <title>Место</title>
-  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-  <link rel="stylesheet" href="./pages/index.css">
+  <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
 </head>
 <body>
   <div class="page">
     <header class="header page__section page__section_indent-size_s">
-      <img class="header__logo" src="./images/logo.svg" alt="Лого">
+      <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="Лого">
     </header>
     <main class="content">
       <section class="profile page__section page__section_indent-size_m">
-        <img class="profile__avatar" src="./images/avatar.jpg" alt="Аватар">
+        <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="Аватар">
         <div class="profile__info">
           <h1 class="profile__title text-ellipsis">Жак-Ив Кусто</h1>
           <p class="profile__subtitle text-ellipsis">Исследователь океана</p>
@@ -86,6 +85,5 @@
       </article>
     </li>
   </template>
-  <script type="module" src="./scripts/pages/index.js"></script>
 </body>
 </html>
