@@ -1,8 +1,6 @@
 .button {
   padding: 0;
   text-align: center;
-  -webkit-transition: opacity .3s ease-in-out;
-  -o-transition: opacity .3s ease-in-out;
   transition: opacity .3s ease-in-out;
   cursor: pointer;
   outline: none;
