@@ -21,6 +21,17 @@ export class FormPopup extends Popup {
   }
 
   /**
+   * Закрывает попап.
+   * 
+   * @override
+   */
+  close() {
+    this._form.reset();
+
+    super.close();
+  }
+
+  /**
    * Устанавливает слушатели событий.
    * 
    * @override
@@ -33,7 +44,6 @@ export class FormPopup extends Popup {
            (evt) => {
              evt.preventDefault();
              handleEvent(this._getInputValues());
-             this._form.reset();
            });
       }
     );

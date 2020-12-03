@@ -5,7 +5,7 @@ import { cardPreviewImageSelector, cardPreviewCaptionSelector } from '../utils/c
  * Класс попапа предпросмотра изображения.
  */
 export class ImagePreviewPopup extends Popup {
-  constructor(popupSelector, onPopupOpen) {
+  constructor(popupSelector) {
     super(popupSelector);
     this._image   = this._popupElement.querySelector(cardPreviewImageSelector);
     this._caption = this._popupElement.querySelector(cardPreviewCaptionSelector);
@@ -34,9 +34,10 @@ export class ImagePreviewPopup extends Popup {
    * 
    * @override
    */
-  open() {
-    this._popupElement.classList.add(popupActiveClass);
-    this._setEventListeners();
+  open({ url, name }) {
+    this._image.src = url;
+    this._caption.textContent = name;
+
     super.open();
   }
 }

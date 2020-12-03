@@ -5,6 +5,7 @@ import { Section } from '../components/Section.js';
 import { FormPopup } from '../components/FormPopup.js';
 import { ImagePreviewPopup } from '../components/ImagePreviewPopup.js';
 import { FormValidator } from '../components/FormValidator.js';
+import { UserInfo } from '../components/UserInfo.js';
 
 function setEventListeners() {
   constants.editProfileBtn.addEventListener('click', () => editProfilePopup.open());
@@ -12,31 +13,19 @@ function setEventListeners() {
 
   editProfilePopup.setEventListeners();
   addCardPopup.setEventListeners();
+  cardPreviewPopup.setEventListeners();
 }
 
 function createCard(cardData) {
-  return new Card(cardData, constants.cardTemplateSelector, onCardClick);
-}
-
-function setCardPreviewData(url, caption) {
-  constants.cardPreviewPopup.caption.textContent = caption;
-  constants.cardPreviewPopup.image.src = url;
+  return new Card(cardData, constants.cardTemplateSelector,
+    () => {
+      cardPreviewPopup.open(cardData);
+    });
 }
 
 function addCardElement(cardData) {
   const card = createCard(cardData);
   cardItems.addItem(card.createElement());
-}
-
-function onCardClick(evt) {
-  const url = evt.target.src;
-  const caption = evt.target
-    .closest('.card')
-    .querySelector('.card__caption')
-    .textContent;
-
-  setCardPreviewData(url, caption);
-  constants.cardPreviewPopup.open();
 }
 
 function onAddCardFormSubmit({ name, url }) {
@@ -50,13 +39,14 @@ function onAddCardFormSubmit({ name, url }) {
 }
 
 function onEditProfileFormReset() {
-  this.elements.name.value = constants.profileName.textContent;
-  this.elements.about.value = constants.profileAbout.textContent;
+  const { name, about } = userInformation.info;
+  
+  this.elements.name.value = name;
+  this.elements.about.value = about;
 }
 
 function onEditProfileFormSubmit({ name, about }) {
-  constants.profileName.textContent = name;
-  constants.profileAbout.textContent = about;
+  userInformation.info = { name, about };
 
   editProfilePopup.close();
 }
@@ -70,9 +60,11 @@ const addCardPopup = new FormPopup(constants.addCardPopupSelector,
   {
     'submit' : onAddCardFormSubmit
   });
-const cardPreviewPopup = new ImagePreviewPopup(constants.addCardPopupSelector, onCardClick);
+const cardPreviewPopup = new ImagePreviewPopup(constants.cardPreviewPopupSelector);
+const userInformation = new UserInfo(constants);
 const editProfileFormValidator = new FormValidator(constants.validationConfig, editProfilePopup.form);
 const addCardFormValidator = new FormValidator(constants.validationConfig, addCardPopup.form);
+
 
 setEventListeners();
 
@@ -84,6 +76,7 @@ const cardItems = new Section(
   constants.cardItemsSelector);
 
 cardItems.renderItems();
+editProfilePopup.form.reset();
 
 editProfileFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
