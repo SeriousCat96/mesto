@@ -15,5 +15,6 @@
 * JavaScript.
 * JS modules.
 * Структура проекта организована согласно [БЭМ](https://ru.bem.info/).
+* Webpack, Babel для сборки проекта.
 
 Сайт опубликован на [GitHub Pages](https://seriouscat96.github.io/mesto/).
