@@ -1,6 +1,7 @@
 import * as constants from '../utils/constants.js';
-import { defaultCards } from '../utils/data.js';
+import { cards } from '../utils/data.js';
 import { Card } from '../components/Card.js';
+import { Section } from '../components/Section.js';
 
 function setEventListeners() {
   constants.editProfileForm.addEventListener('submit', onEditProfileFormSubmit);
@@ -11,18 +12,9 @@ function setEventListeners() {
   constants.addCardBtn.addEventListener('click', () => constants.addCardPopup.open());
 }
 
-function setDefaults() {
-  resetCardItems();
-  constants.editProfileForm.reset();
-}
-
-function resetCardItems() {
-  defaultCards.forEach(
-    cardData => {
-      const card = createCard(cardData);
-      addCardItem(card.createElement());
-    });
-}
+// function setDefaults() {
+//   constants.editProfileForm.reset();
+// }
 
 function createCard(cardData) {
   return new Card(cardData, constants.cardTemplateSelector,
@@ -34,15 +26,16 @@ function createCard(cardData) {
     });
 }
 
-function addCardItem(cardItem) {
-  constants.cardItems.prepend(cardItem);
-}
-
 function openCardPopup(cardData) {
   constants.cardPreviewPopup.caption.textContent = cardData.name;
   constants.cardPreviewPopup.image.src = cardData.url;
 
   constants.cardPreviewPopup.open();
+}
+
+function addCardElement(cardData) {
+  const card = createCard(cardData);
+  cardItems.addItem(card.createElement());
 }
 
 function onAddCardFormSubmit(evt) {
@@ -52,9 +45,8 @@ function onAddCardFormSubmit(evt) {
     "name": constants.cardInputName.value,
     "url": constants.cardInputUrl.value
   };
-  const card = createCard(cardData);
-
-  addCardItem(card.createElement());
+  
+  addCardElement(cardData);
   constants.addCardPopup.close();
 }
 
@@ -75,7 +67,16 @@ function onEditProfileFormSubmit(evt) {
 }
 
 setEventListeners();
-setDefaults();
+// setDefaults();
+
+const cardItems = new Section(
+  {
+    items: cards,
+    renderCallback: (cardData) => addCardElement(cardData)
+  },
+  constants.cardItemsSelector);
+
+cardItems.renderItems();
 
 constants.addCardFormValidator.enableValidation();
 constants.editProfileFormValidator.enableValidation();

@@ -9,6 +9,7 @@ export const cardTemplateSelector = '#card-template';
 export const cardPreviewImageSelector = '.picture-view__image';
 export const cardPreviewCaptionSelector = '.picture-view__caption';
 export const popupCloseBtnSelector = '.popup__close-button';
+export const cardItemsSelector = '.cards-grid__items';
 
 export const inactiveSubmitClass = 'form-view__submit_disabled';
 export const inputErrorClass = 'form-view__input_type_error';
@@ -46,7 +47,6 @@ export const editProfileFormValidator = new FormValidator(validationConfig, edit
 export const addCardFormValidator = new FormValidator(validationConfig, addCardForm);
 
 export const cardTemplate = document.querySelector(cardTemplateSelector);
-export const cardItems = document.querySelector('.cards-grid__items');
 
 export const cardPreviewPopup = new ImagePreviewPopup('.popup#card-preview');
 
