@@ -7,8 +7,8 @@ import { cardPreviewImageSelector, cardPreviewCaptionSelector } from '../utils/c
 export class ImagePreviewPopup extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
-    this._image   = this._popupElement.querySelector(cardPreviewImageSelector);
     this._caption = this._popupElement.querySelector(cardPreviewCaptionSelector);
+    this._image = this._popupElement.querySelector(cardPreviewImageSelector);
   }
 
   /**
@@ -35,9 +35,33 @@ export class ImagePreviewPopup extends Popup {
    * @override
    */
   open({ url, name }) {
-    this._image.src = url;
-    this._caption.textContent = name;
+    this._setImageAndCaption(url, name)
+      .then(() => {
+        console.debug(`loaded image url ${url}`);
+        super.open();
+      })
+      .catch(() => {
+        console.debug(`failed to load image url ${url}`)
+      });
+  }
 
-    super.open();
+  /**
+   * Устанавливает слушатели событий.
+   * 
+   * @override
+   */
+  setEventListeners() {
+    this._image.addEventListener('load', () => super.open());
+
+    super.setEventListeners();
+  }
+
+  _setImageAndCaption(url, caption) {
+    return new Promise((resolve, reject) => {
+      this._caption.textContent = caption;
+      this._image.src = url;
+      this._image.onload = resolve;
+      this._image.onerror = reject;
+    });
   }
 }
