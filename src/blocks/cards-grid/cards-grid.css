@@ -1,7 +1,0 @@
-@import url(./__items/cards-grid__items.css);
-
-.cards-grid {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
