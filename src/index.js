@@ -30,11 +30,8 @@ function addCardElement(cardData) {
   cardItems.addItem(card.createElement());
 }
 
-function onAddCardFormSubmit({ name, url }) {
-  const cardData = {
-    "name": name,
-    "url": url
-  };
+function onAddCardFormSubmit({ name, link }) {
+  const cardData = { name, link };
   
   addCardElement(cardData);
   addCardPopup.close();
