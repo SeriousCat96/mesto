@@ -53,6 +53,10 @@ function onEditProfileFormSubmit({ name, about }) {
   editProfilePopup.close();
 }
 
+function onCardRemoveButtonClick() {
+    this.closest('li').remove();
+}
+
 const editProfilePopup = new FormPopup(constants.editProfilePopupSelector,
   {
     'submit' : onEditProfileFormSubmit,
@@ -62,6 +66,10 @@ const addCardPopup = new FormPopup(constants.addCardPopupSelector,
   {
     'submit' : onAddCardFormSubmit
   });
+// const removeCardPopup = new FormPopup(constants.removeCardPopupSelector,
+//   {
+//     'submit' : onCardRemoveButtonClick,
+//   });
 const cardPreviewPopup = new ImagePreviewPopup(constants.cardPreviewPopupSelector);
 const userInformation = new UserInfo(constants);
 const editProfileFormValidator = new FormValidator(constants.validationConfig, editProfilePopup.form);

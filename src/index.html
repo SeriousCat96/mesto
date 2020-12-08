@@ -35,7 +35,7 @@
     <div class="form-view popup__view">
       <button class="button popup__close-button" type="button"></button>
       <h2 class="form-view__title">Редактировать профиль</h2>
-      <form class="form-view__form" name="profile" method="POST" novalidate>
+      <form class="form-view__form" name="profile" novalidate>
         <label class="form-view__field">
           <input class="form-view__input" id="name" name="name" type="text" minlength="2" maxlength="40" placeholder="Имя" required>
           <span class="error" id="name-error"></span>
@@ -52,7 +52,7 @@
     <div class="form-view popup__view">
       <button class="button popup__close-button" type="button"></button>
       <h2 class="form-view__title">Новое место</h2>
-      <form class="form-view__form" name="card" method="POST" novalidate>
+      <form class="form-view__form" name="card" novalidate>
         <label class="form-view__field">
           <input class="form-view__input" id="card-name" name="name" type="text" minlength="2" maxlength="30" placeholder="Название" required>
           <span class="error" id="card-name-error"></span>
@@ -62,6 +62,15 @@
           <span class="error" id="card-url-error"></span>
         </label>
         <button class="button form-view__submit" type="submit">Создать</button>
+      </form>
+    </div>
+  </section>
+  <section class="popup" id="remove-card">
+    <div class="form-view popup__view">
+      <button class="button popup__close-button" type="button"></button>
+      <h2 class="form-view__title">Вы уверены?</h2>
+      <form class="form-view__form" name="card" novalidate>
+        <button class="button form-view__submit" type="submit">Удалить</button>
       </form>
     </div>
   </section>

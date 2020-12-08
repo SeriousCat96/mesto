@@ -1,5 +1,6 @@
 export const editProfilePopupSelector = '.popup#edit-profile';
 export const addCardPopupSelector = '.popup#add-card';
+export const removeCardPopupSelector = '.popup#remove-card';
 export const cardPreviewPopupSelector = '.popup#card-preview';
 export const formSelector = '.form-view__form';
 export const inputSelector = '.form-view__input';

@@ -13,8 +13,12 @@ export class Card {
    * @param {any} onCardClick Обработчик события клика по карточке.
    */
   constructor(cardData, cardTemplateSelector, onCardClick) {
+    this._id = cardData._id;
     this._name = cardData.name;
-    this._imageUrl  = cardData.url;
+    this._imageUrl = cardData.link;
+    this._likes = cardData.likes;
+    this._owner = cardData.owner;
+    this._createdAt = cardData.createdAt;
     this._cardTemplate = document.querySelector(cardTemplateSelector);
     this._onCardClick = onCardClick;
   }
