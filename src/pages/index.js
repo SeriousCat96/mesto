@@ -9,12 +9,14 @@ import RemoveFormPopup from '../scripts/components/RemoveFormPopup';
 import ImagePreviewPopup from '../scripts/components/ImagePreviewPopup.js';
 import FormValidator from '../scripts/components/FormValidator.js';
 import UserInfo from '../scripts/components/UserInfo.js';
+import Spinner from '../scripts/components/Spinner';
 
 function fetchCards() {
-  const cardsContainer = document.querySelector(constants.cardItemsSelector);
+  const spinner = new Spinner(constants.cardsContainer);
 
+  spinner.render(true);
   return api
-    .getInitialCards({ cardsContainer })
+    .getCards()
     .then(
       (cards) => {
         cardItems = new Section(
@@ -24,7 +26,8 @@ function fetchCards() {
           },
           constants.cardItemsSelector);
         })
-    .catch(() => console.error("Failed to fetch cards."));
+    .catch(() => console.error("Failed to fetch cards."))
+    .finally(() => spinner.remove());
 }
 
 function fetchUserInfo() {

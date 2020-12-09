@@ -1,5 +1,4 @@
 import { baseUri, headers } from "../utils/constants.js";
-import Spinner from "./Spinner.js";
 
 const cardsUrl ='/cards/';
 const userInfoUrl = '/users/me/';
@@ -46,14 +45,10 @@ export default class Api {
    * @param {HTMLElement} контейнер с карточками.
    * @returns {Promise} Результат запроса.
    */
-  getInitialCards({ cardsContainer }) {
-    const spinner = new Spinner(cardsContainer);
-
-    spinner.render(true);
+  getCards() {
     return this
       ._sendJson(cardsUrl, "GET", this._headers)
-      .catch(() => console.error('Failed to get cards'))
-      .finally(() => spinner.remove());
+      .catch(() => console.error('Failed to get cards'));
   }
 
   /**

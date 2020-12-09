@@ -37,6 +37,7 @@ export const validationConfig = {
 };
 
 export const cardTemplate = document.querySelector(cardTemplateSelector);
+export const cardsContainer = document.querySelector(cardItemsSelector);
 export const submitProcessDefaultText = 'Сохранение...';
 export const submitProcessRemoveText = 'Удаление...';
 
