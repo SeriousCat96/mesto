@@ -1,14 +1,17 @@
-import { Popup } from './Popup.js';
-import { formSelector } from '../utils/constants.js';
+import Popup from './Popup.js';
+import { formSelector, submitSelector, submitProcessDefaultText } from '../utils/constants.js';
 
 /**
  * Класс попапа с формой.
  */
-export class FormPopup extends Popup {
+export default class FormPopup extends Popup {
   constructor(popupSelector, eventListeners) {
     super(popupSelector);
     this._form = this._popupElement.querySelector(formSelector);
+    this._submitElement = this._form.querySelector(submitSelector);
     this._eventListeners = eventListeners;
+    this._submitDefaultText = this._submitElement.textContent;
+    this._submitProcessDefaultText = submitProcessDefaultText;
   }
 
   /**
@@ -39,12 +42,12 @@ export class FormPopup extends Popup {
   setEventListeners() {
     Object.keys(this._eventListeners).forEach(
       (eventType) => {
-        const handleEvent = this._eventListeners[eventType].bind(this._form);
+        const eventHandler = this._eventListeners[eventType].bind(this._form);
+
         this._form.addEventListener(eventType,
-           (evt) => {
-             evt.preventDefault();
-             handleEvent(this._getInputValues());
-           });
+          (evt) => this._processEventListener(evt, eventHandler,
+            () => this._submitElement.textContent = this._submitProcessDefaultText,
+            () => this._submitElement.textContent = this._submitDefaultText));
       }
     );
 
@@ -60,5 +63,19 @@ export class FormPopup extends Popup {
     });
   
     return this._formValues;
+  }
+
+  _processEventListener(evt, eventHandler, processCallback, finishCallback) {
+    evt.preventDefault();
+    var result = eventHandler(this._getInputValues());
+
+    if (evt.type === 'submit' && result instanceof Promise) {
+      processCallback();
+
+      result
+        .then(() => finishCallback())
+        .then(() => this.close())
+        .finally(() => this._form.reset());
+    }
   }
 }

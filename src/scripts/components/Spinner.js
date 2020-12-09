@@ -3,7 +3,7 @@ import { spinnerClass, spinnerVisibleClass } from '../utils/constants.js';
 /**
  * Класс для виджета "спиннер" (отрисовывается при загрузке элемента).
  */
-export class Spinner {
+export default class Spinner {
   constructor(ownerElement) {
     this._createElement(ownerElement);
   }

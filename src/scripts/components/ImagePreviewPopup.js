@@ -1,10 +1,10 @@
-import { Popup } from './Popup.js';
+import Popup from './Popup.js';
 import { cardPreviewImageSelector, cardPreviewCaptionSelector } from '../utils/constants.js';
 
 /**
  * Класс попапа предпросмотра изображения.
  */
-export class ImagePreviewPopup extends Popup {
+export default class ImagePreviewPopup extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
     this._caption = this._popupElement.querySelector(cardPreviewCaptionSelector);
@@ -34,14 +34,14 @@ export class ImagePreviewPopup extends Popup {
    * 
    * @override
    */
-  open({ url, name }) {
-    this._setImageAndCaption(url, name)
+  open({ link, name }) {
+    this._setImageAndCaption(link, name)
       .then(() => {
-        console.debug(`loaded image url ${url}`);
+        console.debug(`loaded image url ${link}`);
         super.open();
       })
       .catch(() => {
-        console.debug(`failed to load image url ${url}`)
+        console.debug(`failed to load image url ${link}`)
       });
   }
 
@@ -56,10 +56,10 @@ export class ImagePreviewPopup extends Popup {
     super.setEventListeners();
   }
 
-  _setImageAndCaption(url, caption) {
+  _setImageAndCaption(link, caption) {
     return new Promise((resolve, reject) => {
       this._caption.textContent = caption;
-      this._image.src = url;
+      this._image.src = link;
       this._image.onload = resolve;
       this._image.onerror = reject;
     });
