@@ -1,5 +1,3 @@
-import Api from "../components/Api";
-
 export const editAvatarPopupSelector = '.popup#edit-avatar';
 export const editProfilePopupSelector = '.popup#edit-profile';
 export const addCardPopupSelector = '.popup#add-card';
@@ -46,4 +44,3 @@ export const baseUri = 'https://mesto.nomoreparties.co/v1/cohort-18';
 export const headers = {
   authorization: 'e1917e0b-6d7d-4255-81d0-fb0ca13ea044'
 }
-export const api = new Api({ baseUri, headers });

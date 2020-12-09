@@ -1,6 +1,6 @@
 import ImageRenderer from './ImageRenderer.js';
 import UserInfo from './UserInfo.js';
-import { api } from '../utils/constants.js';
+import { api} from './Api.js';
 
 /**
  * Класс карточки.

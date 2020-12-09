@@ -1,7 +1,7 @@
 import './index.css';
 
 import * as constants from '../scripts/utils/constants.js';
-import { api } from '../scripts/utils/constants.js';
+import { api } from '../scripts/components/Api.js';
 import Card from '../scripts/components/Card.js';
 import Section from '../scripts/components/Section.js';
 import FormPopup from '../scripts/components/FormPopup.js';

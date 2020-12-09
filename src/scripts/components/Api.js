@@ -1,4 +1,5 @@
-import Spinner from "./Spinner";
+import { baseUri, headers } from "../utils/constants.js";
+import Spinner from "./Spinner.js";
 
 const cardsUrl ='/cards/';
 const userInfoUrl = '/users/me/';
@@ -134,3 +135,5 @@ export default class Api {
       .catch((info) => console.error(`Failed to fetch json data from ${uri}. Info: ${info}`));
   }
 }
+
+export const api = new Api({ baseUri, headers });
