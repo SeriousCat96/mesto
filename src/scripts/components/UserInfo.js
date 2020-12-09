@@ -1,4 +1,4 @@
-import ImageRenderer from "./ImageRenderer";
+import ImageRenderer from './ImageRenderer.js';
 
 /**
  * Описывает информацию о пользователе.

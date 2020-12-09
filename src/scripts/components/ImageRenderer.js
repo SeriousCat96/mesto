@@ -1,4 +1,4 @@
-import Spinner from "./Spinner.js";
+import Spinner from './Spinner.js';
 
 /**
  * Рендерер изображений.

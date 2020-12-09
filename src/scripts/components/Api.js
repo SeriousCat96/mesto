@@ -1,4 +1,4 @@
-import { baseUri, headers } from "../utils/constants.js";
+import { baseUri, headers } from '../utils/constants.js';
 
 const cardsUrl ='/cards/';
 const userInfoUrl = '/users/me/';
@@ -21,10 +21,10 @@ export default class Api {
    * @returns {Promise} Результат запроса.
    */
   addCard(cardData) {
-    const headers = { ...this._headers, "Content-Type": "application/json" };
+    const headers = { ...this._headers, 'Content-Type': 'application/json' };
    
     return this
-      ._sendJson(cardsUrl, "POST", headers, JSON.stringify(cardData))
+      ._sendJson(cardsUrl, 'POST', headers, JSON.stringify(cardData))
       .catch(() => console.error('Failed to add card.'));
   }
 
@@ -35,7 +35,7 @@ export default class Api {
    */
   deleteCard(cardId) {
     return this
-      ._sendJson(cardsUrl + cardId, "DELETE", this._headers)
+      ._sendJson(cardsUrl + cardId, 'DELETE', this._headers)
       .catch(() => console.error('Failed to delete card.'));
   }
 
@@ -47,7 +47,7 @@ export default class Api {
    */
   getCards() {
     return this
-      ._sendJson(cardsUrl, "GET", this._headers)
+      ._sendJson(cardsUrl, 'GET', this._headers)
       .catch(() => console.error('Failed to get cards'));
   }
 
@@ -58,7 +58,7 @@ export default class Api {
    */
   getUserInfo() {
     return this
-      ._sendJson(userInfoUrl, "GET", this._headers)
+      ._sendJson(userInfoUrl, 'GET', this._headers)
       .catch(() => console.error('Failed to get user info.'));
   }
 
@@ -69,10 +69,10 @@ export default class Api {
    * @returns {Promise} Результат запроса.
    */
   setAvatar(avatar) {
-    const headers = { ...this._headers, "Content-Type": "application/json" };
+    const headers = { ...this._headers, 'Content-Type': 'application/json' };
 
     return this
-      ._sendJson(avatarUrl, "PATCH", headers, JSON.stringify(avatar))
+      ._sendJson(avatarUrl, 'PATCH', headers, JSON.stringify(avatar))
       .catch(() => console.error('Failed to set avatar.'));
   }
 
@@ -82,10 +82,10 @@ export default class Api {
    * @returns {Promise} Результат запроса.
    */
   setUserInfo(userInfo) {
-    const headers = { ...this._headers, "Content-Type": "application/json" };
+    const headers = { ...this._headers, 'Content-Type': 'application/json' };
 
     return this
-      ._sendJson(userInfoUrl, "PATCH", headers, JSON.stringify(userInfo))
+      ._sendJson(userInfoUrl, 'PATCH', headers, JSON.stringify(userInfo))
       .catch(() => console.error('Failed to set user info.'));
   }
 
@@ -97,7 +97,7 @@ export default class Api {
    */
   like(cardId) {
     return this
-      ._sendJson(likeUrl + cardId, "PUT", this._headers)
+      ._sendJson(likeUrl + cardId, 'PUT', this._headers)
       .catch(() => console.error(`Failed to like card id=${cardId}.`));
   }
 
@@ -109,7 +109,7 @@ export default class Api {
    */
   unlike(cardId) {
     return this
-      ._sendJson(likeUrl + cardId, "DELETE", this._headers)
+      ._sendJson(likeUrl + cardId, 'DELETE', this._headers)
       .catch(() => console.error(`Failed to unlike card id=${cardId}.`));
   }
 
