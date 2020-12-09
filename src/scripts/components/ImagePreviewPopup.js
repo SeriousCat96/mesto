@@ -1,10 +1,10 @@
-import { Popup } from './Popup.js';
+import Popup from './Popup.js';
 import { cardPreviewImageSelector, cardPreviewCaptionSelector } from '../utils/constants.js';
 
 /**
  * Класс попапа предпросмотра изображения.
  */
-export class ImagePreviewPopup extends Popup {
+export default class ImagePreviewPopup extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
     this._caption = this._popupElement.querySelector(cardPreviewCaptionSelector);

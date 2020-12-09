@@ -1,7 +1,7 @@
 /**
  * Отрисовывает элементы на странице.
  */
-export class Section {
+export default class Section {
   /**
    * Создаёт Section.
    * @param {Array} items Данные, которые нужно добавить на страницу при инициализации контейнера.
@@ -19,11 +19,20 @@ export class Section {
   }
 
   /**
-   * Добавляет элемент на страницу.
+   * Добавляет элемент на страницу в конец контейнера.
    * 
    * @param {HTMLElement} item Элемент, который нужно добавить.
    */
-  addItem(item) {
+  appendItem(item) {
+    this._container.append(item);
+  }
+
+  /**
+   * Добавляет элемент на страницу в начало контейнера.
+   * 
+   * @param {HTMLElement} item Элемент, который нужно добавить.
+   */
+  prependItem(item) {
     this._container.prepend(item);
   }
   

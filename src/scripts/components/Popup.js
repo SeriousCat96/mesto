@@ -4,7 +4,7 @@ import { popupActiveClass, popupCloseBtnSelector } from '../utils/constants.js';
 /**
  * Базовый класс всплывающего окна (попап).
  */
-export class Popup {
+export default class Popup {
   constructor(popupSelector) {
     this._popupElement = document.querySelector(popupSelector);
     this._onDocumentKeyUp =
