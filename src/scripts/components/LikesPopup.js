@@ -2,6 +2,9 @@ import Popup from './Popup.js';
 import Section from './Section.js';
 import { likePopupSelector, likeItemsSelector, likeTemplateSelector, likesTemplateSelector } from '../utils/constants.js';
 
+/**
+ * Попап отображения лайков.
+ */
 export default class LikesPopup extends Popup {
   constructor(likeElement) {
     super(likePopupSelector);
@@ -11,6 +14,12 @@ export default class LikesPopup extends Popup {
     this._likeTemplate = document.querySelector(likeTemplateSelector);
   }
 
+  /**
+   * Открывает попап
+   * 
+   * @override
+   * @param {Array} likes Список лайков. 
+   */
   open(likes) {
     const popupTemplate = this._createPopupFromTemplate();
     this._likeElement.appendChild(popupTemplate);
@@ -27,6 +36,11 @@ export default class LikesPopup extends Popup {
     this._checkCoordinates();
   }
 
+  /**
+   * Закрывает попап.
+   * 
+   * @override
+   */
   close() {
     this._popupElement.remove();
   }
