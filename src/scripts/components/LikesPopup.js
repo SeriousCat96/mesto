@@ -2,6 +2,9 @@ import Popup from './Popup.js';
 import Section from './Section.js';
 import { likePopupSelector, likeItemsSelector, likeTemplateSelector, likesTemplateSelector } from '../utils/constants.js';
 
+/**
+ * Попап отображения лайков.
+ */
 export default class LikesPopup extends Popup {
   constructor(likeElement) {
     super(likePopupSelector);
@@ -11,6 +14,12 @@ export default class LikesPopup extends Popup {
     this._likeTemplate = document.querySelector(likeTemplateSelector);
   }
 
+  /**
+   * Открывает попап
+   * 
+   * @override
+   * @param {Array} likes Список лайков. 
+   */
   open(likes) {
     const popupTemplate = this._createPopupFromTemplate();
     this._likeElement.appendChild(popupTemplate);
@@ -24,8 +33,14 @@ export default class LikesPopup extends Popup {
       
     this._popupElement = document.querySelector(likePopupSelector);
     this._items.renderItems();
+    this._checkCoordinates();
   }
 
+  /**
+   * Закрывает попап.
+   * 
+   * @override
+   */
   close() {
     this._popupElement.remove();
   }
@@ -53,5 +68,25 @@ export default class LikesPopup extends Popup {
     return this._popupTemplate
       .content
       .cloneNode(true);
+  }
+
+  _checkCoordinates() {
+    const popupBounds = this._popupElement.getBoundingClientRect();
+    const tooltips = this._likeElement.querySelectorAll('.like__name-tooltip');
+
+    if (popupBounds.bottom > window.innerHeight) {
+      this._popupElement.classList.add('likes-view_pos_top');
+    } else {
+      this._popupElement.classList.remove('likes-view_pos_top');
+    }
+
+    tooltips.forEach((tooltip) => {
+      const tooltipBounds = tooltip.getBoundingClientRect();
+
+      if (tooltipBounds.right > window.outerWidth) {
+        tooltip.style.left = 0;
+        tooltip.style.right = '-100%';
+      }
+    })
   }
 } 
