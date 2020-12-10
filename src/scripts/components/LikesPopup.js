@@ -1,6 +1,6 @@
-import Popup from "./Popup.js";
-import Section from "./Section.js";
-import { likePopupSelector, likeItemsSelector, likeTemplateSelector, likesTemplateSelector } from "../utils/constants.js"
+import Popup from './Popup.js';
+import Section from './Section.js';
+import { likePopupSelector, likeItemsSelector, likeTemplateSelector, likesTemplateSelector } from '../utils/constants.js';
 
 export default class LikesPopup extends Popup {
   constructor(likeElement) {
