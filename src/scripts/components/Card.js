@@ -59,7 +59,7 @@ export default class Card {
       });
     this._userLiked = this._checkLike();
     
-    this._renderLike();
+    this._renderLikeElement();
     this._setEventListeners();
 
     this._cardCaption.textContent = this._name;
@@ -103,7 +103,7 @@ export default class Card {
    * 
    * @private
    */
-  _renderLike() {
+  _renderLikeElement() {
     this._cardLikeBtn.onanimationend = (e) => e.target.classList.remove('scaling');
     this._cardLikeBtn.classList.add('scaling');
     
@@ -125,7 +125,7 @@ export default class Card {
   _setLikes(likes) {
     this._likes = likes;
     this._userLiked = !this._userLiked;
-    this._renderLike();
+    this._renderLikeElement();
     this._renderLikes(this._cardLike, this._likes)
   }
 

@@ -87,7 +87,7 @@ function showLikes(element, likes) {
   if (likesPopup) {
     hideLikes();
   }
-  if (likes.length > 0 && window.matchMedia("(min-width: 1024px)").matches) {
+  if (likes.length > 0) {
     likesPopup = new LikesPopup(element);
     likesPopup.open(likes);
   }
