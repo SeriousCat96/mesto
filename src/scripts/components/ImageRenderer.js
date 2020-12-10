@@ -50,7 +50,7 @@ export default class ImageRenderer {
                 this._spinner.render(false);
 
                 if (this._autoReload) {
-                  setTimeout(() => this.render(this._image.src), 5000);
+                  setTimeout(() => this.render(this._image.src), 10000);
                 }
               })
           })

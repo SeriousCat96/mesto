@@ -21,8 +21,10 @@ export default class Card {
    * @param {UserInfo} currentUser Информация о текущем пользователе.
    * @param {any} onCardClick Обработчик события клика по карточке.
    * @param {any} onCardRemoveButtonClick Обработчик события нажатия кнопки удаления карточки.
+   * @param {any} showLikes Показать лайки.
+   * @param {any} hideLikes Скрыть лайки.
    */
-  constructor({ _id, name, link, likes, owner, createdAt }, cardTemplateSelector, currentUser, onCardClick, onCardRemoveButtonClick) {
+  constructor({ _id, name, link, likes, owner, createdAt }, cardTemplateSelector, currentUser, onCardClick, onCardRemoveButtonClick, showLikes, hideLikes) {
     this._id = _id;
     this._name = name;
     this._imageUrl = link;
@@ -33,6 +35,8 @@ export default class Card {
     this._currentUser = currentUser;
     this._onCardClick = onCardClick;
     this._onCardRemoveButtonClick = onCardRemoveButtonClick;
+    this._showLikes = showLikes;
+    this._hideLikes = hideLikes;
   }
 
   /**
@@ -45,6 +49,7 @@ export default class Card {
     this._cardImage = this._cardElement.querySelector('.card__image');
     this._cardCaption = this._cardElement.querySelector('.card__caption');
     this._cardRemoveBtn = this._cardElement.querySelector('.card__remove-button');
+    this._cardLike = this._cardElement.querySelector('.card__like');
     this._cardLikeBtn = this._cardElement.querySelector('.card__like-button');
     this._cardLikeCount = this._cardElement.querySelector('.card__like-count');
     this._cardImageRenderer = new ImageRenderer(
@@ -121,6 +126,7 @@ export default class Card {
     this._likes = likes;
     this._userLiked = !this._userLiked;
     this._renderLike();
+    this._renderLikes(this._cardLike, this._likes)
   }
 
   /**
@@ -131,6 +137,8 @@ export default class Card {
   _setEventListeners() {
     this._cardImage.addEventListener('click', this._onCardClick);
     this._cardLikeBtn.addEventListener('click', this._onCardLikeButtonClick.bind(this));
+    this._cardLike.addEventListener('mouseenter', () => this._showLikes(this._cardLike, this._likes));
+    this._cardLike.addEventListener('mouseleave', () => this._hideLikes());
 
     if (this._checkCardOwner()) {
       this._cardRemoveBtn.addEventListener('click', () => this._onCardRemoveButtonClick(
@@ -141,6 +149,14 @@ export default class Card {
     } else {
       this._cardRemoveBtn.remove();
     }
+  }
+
+  _renderLikes(element, likes) {
+    if (element) {
+      this._hideLikes();
+    }
+
+    this._showLikes(element, likes);
   }
 
   /**

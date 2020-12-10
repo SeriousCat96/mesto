@@ -5,7 +5,7 @@
   justify-content: center;
   align-items: center;
   visibility: hidden;
-  background: url(../../images/spinner.svg) center / 64px no-repeat ;
+  background: url(../../images/spinner.svg) center / 50% 50% no-repeat ;
   position: absolute;
   top: 0;
   left: 0;

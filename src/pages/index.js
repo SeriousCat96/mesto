@@ -7,6 +7,7 @@ import Section from '../scripts/components/Section.js';
 import FormPopup from '../scripts/components/FormPopup.js';
 import RemoveFormPopup from '../scripts/components/RemoveFormPopup';
 import ImagePreviewPopup from '../scripts/components/ImagePreviewPopup.js';
+import LikesPopup from '../scripts/components/LikesPopup.js';
 import FormValidator from '../scripts/components/FormValidator.js';
 import UserInfo from '../scripts/components/UserInfo.js';
 import Spinner from '../scripts/components/Spinner';
@@ -25,6 +26,8 @@ function fetchCards() {
             renderCallback: (cardData) => addCardElement(cardData, (item) => cardItems.appendItem(item))
           },
           constants.cardItemsSelector);
+
+          console.debug(cards);
         })
     .catch(() => console.error("Failed to fetch cards."))
     .finally(() => spinner.remove());
@@ -59,7 +62,9 @@ function setEventListeners() {
 function createCard(cardData) {
   return new Card(cardData, constants.cardTemplateSelector, userInformation,
     () => cardPreviewPopup.open(cardData),
-    (cardElement) => removeCardPopup.open(cardElement));
+    (cardElement) => removeCardPopup.open(cardElement),
+    showLikes,
+    hideLikes);
 }
 
 function addCardElement(cardData, addCardFunction) {
@@ -76,6 +81,23 @@ function removeCardElement({ id, element }) {
 function setUserInfo({ _id, name, about, avatar }) {
   userInformation.info = { _id, name, about, avatar };
   editProfilePopup.form.reset();
+}
+
+function showLikes(element, likes) {
+  if (likesPopup) {
+    hideLikes();
+  }
+  if (likes.length > 0) {
+    likesPopup = new LikesPopup(element);
+    likesPopup.open(likes);
+  }
+}
+
+function hideLikes() {
+  if (likesPopup) {
+    likesPopup.close();
+    likesPopup = null;
+  }
 }
 
 function onAddCardFormSubmit({ name, link }) {
@@ -127,6 +149,7 @@ const editProfileFormValidator = new FormValidator(constants.validationConfig, e
 const addCardFormValidator = new FormValidator(constants.validationConfig, addCardPopup.form);
 
 let cardItems = [];
+let likesPopup = null;
 
 fetchUserAndCards();
 setEventListeners();
@@ -134,4 +157,3 @@ setEventListeners();
 editAvatarFormValidator.enableValidation();
 editProfileFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
-

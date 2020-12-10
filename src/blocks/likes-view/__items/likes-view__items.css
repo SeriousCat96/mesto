@@ -1,0 +1,9 @@
+.likes-view__items {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, 50px);
+  grid-auto-flow: column;
+  gap: 10px 10px;
+  width: 100%;
+  box-sizing: border-box;
+}

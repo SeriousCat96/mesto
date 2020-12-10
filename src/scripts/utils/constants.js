@@ -3,18 +3,22 @@ export const editProfilePopupSelector = '.popup#edit-profile';
 export const addCardPopupSelector = '.popup#add-card';
 export const removeCardPopupSelector = '.popup#remove-card';
 export const cardPreviewPopupSelector = '.popup#card-preview';
+export const likePopupSelector = '.likes-view';
 export const formSelector = '.form-view__form';
 export const inputSelector = '.form-view__input';
 export const submitSelector = '.form-view__submit';
-export const cardTemplateSelector = '#card-template';
 export const cardPreviewImageSelector = '.picture-view__image';
 export const cardPreviewCaptionSelector = '.picture-view__caption';
 export const popupCloseBtnSelector = '.popup__close-button';
 export const cardItemsSelector = '.cards-grid__items';
+export const likeItemsSelector = '.likes-view__items';
 export const userNameSelector = '.profile__title';
 export const aboutSelector = '.profile__subtitle';
 export const avatarSelector = '.profile__image';
 
+export const cardTemplateSelector = '#card-template';
+export const likesTemplateSelector = '#likes';
+export const likeTemplateSelector = '#like';
 
 export const inactiveSubmitClass = 'form-view__submit_disabled';
 export const inputErrorClass = 'form-view__input_type_error';
