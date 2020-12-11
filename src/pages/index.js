@@ -23,7 +23,7 @@ function fetchCards() {
         cardItems = new Section(
           {
             items: cards,
-            renderCallback: (cardData) => addCardElement(cardData, (item) => cardItems.appendItem(item))
+            renderCallback: (cardData) => handleAddCardElement(cardData, (item) => cardItems.appendItem(item))
           },
           constants.cardItemsSelector);
 
@@ -59,33 +59,35 @@ function setEventListeners() {
   cardPreviewPopup.setEventListeners();
 }
 
-function createCard(cardData) {
-  return new Card(cardData, constants.cardTemplateSelector, userInformation,
-    () => cardPreviewPopup.open(cardData),
-    (cardElement) => removeCardPopup.open(cardElement),
-    showLikes,
-    hideLikes);
-}
-
-function addCardElement(cardData, addCardFunction) {
-  const card = createCard(cardData);
-  addCardFunction(card.createElement());
-}
-
-function removeCardElement({ id, element }) {
-  return api.deleteCard(id)
-    .then(() => element.remove())
-    .catch(() => console.error("Failed to remove card."));
-}
-
 function setUserInfo({ _id, name, about, avatar }) {
   userInformation.info = { _id, name, about, avatar };
   editProfilePopup.form.reset();
 }
 
-function showLikes(element, likes) {
+function createCard(cardData) {
+  return new Card(cardData, constants.cardTemplateSelector, userInformation,
+    () => cardPreviewPopup.open(cardData),
+    (cardElement) => removeCardPopup.open(cardElement),
+    handleShowLikes,
+    handleHideLikes,
+    api.like.bind(api),
+    api.unlike.bind(api));
+}
+
+function handleAddCardElement(cardData, addCardFunction) {
+  const card = createCard(cardData);
+  addCardFunction(card.createElement());
+}
+
+function handleRemoveCardElement({ id, element }) {
+  return api.deleteCard(id)
+    .then(() => element.remove())
+    .catch(() => console.error("Failed to remove card."));
+}
+
+function handleShowLikes(element, likes) {
   if (likesPopup) {
-    hideLikes();
+    handleHideLikes();
   }
   if (likes.length > 0) {
     likesPopup = new LikesPopup(element);
@@ -93,33 +95,33 @@ function showLikes(element, likes) {
   }
 }
 
-function hideLikes() {
+function handleHideLikes() {
   if (likesPopup) {
     likesPopup.close();
     likesPopup = null;
   }
 }
 
-function onAddCardFormSubmit({ name, link }) {
+function handleAddCardFormSubmit({ name, link }) {
   return api.addCard({ name, link })
-    .then((card) => addCardElement(card, (item) => cardItems.prependItem(item)))
+    .then((card) => handleAddCardElement(card, (item) => cardItems.prependItem(item)))
     .catch(() => console.error("Failed to add card."));
 }
 
-function onEditAvatarFormSubmit({ avatar }) {
+function handleEditAvatarFormSubmit({ avatar }) {
   return api.setAvatar({ avatar })
     .then((info) => setUserInfo(info))
     .catch(() => console.error("Failed to edit avatar."));
 }
 
-function onEditProfileFormReset() {
+function handleEditProfileFormReset() {
   const { name, about } = userInformation.info;
   
   this.elements.name.value = name;
   this.elements.about.value = about;
 }
 
-function onEditProfileFormSubmit({ name, about }) {
+function handleEditProfileFormSubmit({ name, about }) {
   return api.setUserInfo({ name, about })
     .then((info) => setUserInfo(info))
     .catch(() => console.error("Failed to edit user info."));
@@ -127,20 +129,20 @@ function onEditProfileFormSubmit({ name, about }) {
 
 const editProfilePopup = new FormPopup(constants.editProfilePopupSelector,
   {
-    'submit' : onEditProfileFormSubmit,
-    'reset' : onEditProfileFormReset
+    'submit' : handleEditProfileFormSubmit,
+    'reset' : handleEditProfileFormReset
   });
 const editAvatarPopup = new FormPopup(constants.editAvatarPopupSelector,
   {
-    'submit' : onEditAvatarFormSubmit,
+    'submit' : handleEditAvatarFormSubmit,
   });
 const addCardPopup = new FormPopup(constants.addCardPopupSelector,
   {
-    'submit' : onAddCardFormSubmit
+    'submit' : handleAddCardFormSubmit
   });
 const removeCardPopup = new RemoveFormPopup(constants.removeCardPopupSelector,
   {
-    'submit' : removeCardElement,
+    'submit' : handleRemoveCardElement,
   });
 const cardPreviewPopup = new ImagePreviewPopup(constants.cardPreviewPopupSelector);
 const userInformation = new UserInfo(constants);

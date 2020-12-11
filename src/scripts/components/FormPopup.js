@@ -75,7 +75,7 @@ export default class FormPopup extends Popup {
       result
         .then(() => finishCallback())
         .then(() => this.close())
-        .finally(() => this._form.reset());
+        .then(() => this._form.reset());
     }
   }
 }

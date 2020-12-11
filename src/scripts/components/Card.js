@@ -1,6 +1,5 @@
 import ImageRenderer from './ImageRenderer.js';
 import UserInfo from './UserInfo.js';
-import { api} from './Api.js';
 
 /**
  * Класс карточки.
@@ -21,10 +20,28 @@ export default class Card {
    * @param {UserInfo} currentUser Информация о текущем пользователе.
    * @param {any} onCardClick Обработчик события клика по карточке.
    * @param {any} onCardRemoveButtonClick Обработчик события нажатия кнопки удаления карточки.
-   * @param {any} showLikes Показать лайки.
-   * @param {any} hideLikes Скрыть лайки.
+   * @param {any} onShowLikes Показать лайки.
+   * @param {any} onHideLikes Скрыть лайки.
+   * @param {any} onLike Поставить лайк.
+   * @param {any} onUnlike Убрать лайк.
    */
-  constructor({ _id, name, link, likes, owner, createdAt }, cardTemplateSelector, currentUser, onCardClick, onCardRemoveButtonClick, showLikes, hideLikes) {
+  constructor(
+    { 
+      _id, 
+      name, 
+      link, 
+      likes, 
+      owner, 
+      createdAt 
+    }, 
+    cardTemplateSelector, 
+    currentUser, 
+    onCardClick, 
+    onCardRemoveButtonClick, 
+    onShowLikes, 
+    onHideLikes,
+    onLike,
+    onUnlike) {
     this._id = _id;
     this._name = name;
     this._imageUrl = link;
@@ -35,8 +52,10 @@ export default class Card {
     this._currentUser = currentUser;
     this._onCardClick = onCardClick;
     this._onCardRemoveButtonClick = onCardRemoveButtonClick;
-    this._showLikes = showLikes;
-    this._hideLikes = hideLikes;
+    this._onShowLikes = onShowLikes;
+    this._onHideLikes = onHideLikes;
+    this._onLike = onLike;
+    this._onUnlike = onUnlike;
   }
 
   /**
@@ -137,8 +156,8 @@ export default class Card {
   _setEventListeners() {
     this._cardImage.addEventListener('click', this._onCardClick);
     this._cardLikeBtn.addEventListener('click', this._onCardLikeButtonClick.bind(this));
-    this._cardLike.addEventListener('mouseenter', () => this._showLikes(this._cardLike, this._likes));
-    this._cardLike.addEventListener('mouseleave', () => this._hideLikes());
+    this._cardLike.addEventListener('mouseenter', () => this._onShowLikes(this._cardLike, this._likes));
+    this._cardLike.addEventListener('mouseleave', () => this._onHideLikes());
 
     if (this._checkCardOwner()) {
       this._cardRemoveBtn.addEventListener('click', () => this._onCardRemoveButtonClick(
@@ -153,10 +172,10 @@ export default class Card {
 
   _renderLikes(element, likes) {
     if (element) {
-      this._hideLikes();
+      this._onHideLikes();
     }
 
-    this._showLikes(element, likes);
+    this._onShowLikes(element, likes);
   }
 
   /**
@@ -166,10 +185,10 @@ export default class Card {
    */
   _onCardLikeButtonClick() {
     if (this._userLiked) {
-      api.unlike(this._id)
+      this._onUnlike(this._id)
         .then(({ likes }) => this._setLikes(likes));
     } else {
-      api.like(this._id)
+      this._onLike(this._id)
         .then(({ likes }) => this._setLikes(likes));
     }
   }

@@ -1,9 +1,9 @@
 import { baseUri, headers } from '../utils/constants.js';
 
-const cardsUrl ='/cards/';
-const userInfoUrl = '/users/me/';
-const avatarUrl = userInfoUrl + 'avatar/';
-const likeUrl = '/cards/likes/';
+const CARDS_URL ='/cards/';
+const USER_INFO_URL = '/users/me/';
+const AVATAR_URL = USER_INFO_URL + 'avatar/';
+const LIKE_URL = '/cards/likes/';
 
 /**
  * Класс для работы с API.
@@ -22,10 +22,9 @@ export default class Api {
    */
   addCard(cardData) {
     const headers = { ...this._headers, 'Content-Type': 'application/json' };
-   
+
     return this
-      ._sendJson(cardsUrl, 'POST', headers, JSON.stringify(cardData))
-      .catch(() => console.error('Failed to add card.'));
+      ._sendJson(CARDS_URL, 'POST', headers, JSON.stringify(cardData));
   }
 
   /**
@@ -35,8 +34,7 @@ export default class Api {
    */
   deleteCard(cardId) {
     return this
-      ._sendJson(cardsUrl + cardId, 'DELETE', this._headers)
-      .catch(() => console.error('Failed to delete card.'));
+      ._sendJson(CARDS_URL + cardId, 'DELETE', this._headers);
   }
 
   /**
@@ -47,8 +45,7 @@ export default class Api {
    */
   getCards() {
     return this
-      ._sendJson(cardsUrl, 'GET', this._headers)
-      .catch(() => console.error('Failed to get cards'));
+      ._sendJson(CARDS_URL, 'GET', this._headers);
   }
 
   /**
@@ -58,8 +55,7 @@ export default class Api {
    */
   getUserInfo() {
     return this
-      ._sendJson(userInfoUrl, 'GET', this._headers)
-      .catch(() => console.error('Failed to get user info.'));
+      ._sendJson(USER_INFO_URL, 'GET', this._headers);
   }
 
   /**
@@ -72,8 +68,7 @@ export default class Api {
     const headers = { ...this._headers, 'Content-Type': 'application/json' };
 
     return this
-      ._sendJson(avatarUrl, 'PATCH', headers, JSON.stringify(avatar))
-      .catch(() => console.error('Failed to set avatar.'));
+      ._sendJson(AVATAR_URL, 'PATCH', headers, JSON.stringify(avatar));
   }
 
   /**
@@ -85,8 +80,7 @@ export default class Api {
     const headers = { ...this._headers, 'Content-Type': 'application/json' };
 
     return this
-      ._sendJson(userInfoUrl, 'PATCH', headers, JSON.stringify(userInfo))
-      .catch(() => console.error('Failed to set user info.'));
+      ._sendJson(USER_INFO_URL, 'PATCH', headers, JSON.stringify(userInfo));
   }
 
   /**
@@ -97,8 +91,7 @@ export default class Api {
    */
   like(cardId) {
     return this
-      ._sendJson(likeUrl + cardId, 'PUT', this._headers)
-      .catch(() => console.error(`Failed to like card id=${cardId}.`));
+      ._sendJson(LIKE_URL + cardId, 'PUT', this._headers);
   }
 
   /**
@@ -109,8 +102,7 @@ export default class Api {
    */
   unlike(cardId) {
     return this
-      ._sendJson(likeUrl + cardId, 'DELETE', this._headers)
-      .catch(() => console.error(`Failed to unlike card id=${cardId}.`));
+      ._sendJson(LIKE_URL + cardId, 'DELETE', this._headers);
   }
 
   _sendJson(url, method, headers, body) {
@@ -126,8 +118,7 @@ export default class Api {
           }
           
           return Promise.reject();
-        })
-      .catch((info) => console.error(`Failed to fetch json data from ${uri}. Info: ${info}`));
+        });
   }
 }
 
