@@ -2,7 +2,7 @@
 @import url(./_indent-size/page__section_indent-size_m.css);
 
 .page__section {
-  max-width: 882px;
+  max-width: 1024px;
   box-sizing: border-box;
   color: white;
   font-family: 'Inter', 'Verdana', sans-serif;
